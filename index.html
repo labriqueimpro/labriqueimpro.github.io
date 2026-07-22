@@ -1,12 +1,270 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaBriqueImpro</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Brique Impro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=ght@300;400;600;700&display=swap
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Montserrat,sans-serif;
+    background:#181818;
+    color:white;
+}
+
+header{
+    background:#202020;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #333;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo img{
+    width:50px;
+}
+
+.logo h1{
+    font-size:1.5rem;
+}
+
+.search{
+    width:40%;
+}
+
+.search input{
+    width:100%;
+    padding:10px;
+    background:#121212;
+    border:1px solid #444;
+    color:white;
+}
+
+.container{
+    display:flex;
+}
+
+.sidebar{
+    width:250px;
+    background:#212121;
+    min-height:100vh;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    padding:18px 25px;
+    border-bottom:1px solid #2e2e2e;
+}
+
+.sidebar li:hover{
+    background:#333;
+}
+
+.sidebar a{
+    color:white;
+    text-decoration:none;
+}
+
+.content{
+    flex:1;
+    padding:30px;
+}
+
+.categories{
+    display:flex;
+    gap:10px;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+}
+
+.categories span{
+    background:#333;
+    padding:8px 18px;
+    border-radius:20px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#222;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.card img{
+    width:100%;
+    display:block;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.card h2{
+    font-size:1.1rem;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#cfcfcf;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    background:#111;
+}
+
+@media(max-width:900px){
+
+.container{
+    flex-direction:column;
+}
+
+.sidebar{
+    width:100%;
+    min-height:auto;
+}
+
+.search{
+    display:none;
+}
+
+}
+
+</style>
 </head>
+
 <body>
-    <h1>La Brique Impro</h1>
-    <p>Association de théâtre d'improvisation.</p>
+
+<header>
+
+<div class="logo">
+images/logo.png
+<h1>LA BRIQUE IMPRO</h1>
+</div>
+
+<div class="search">
+<input type="text" placeholder="Rechercher un spectacle">
+</div>
+
+</header>
+
+<div class="container">
+
+<nav class="sidebar">
+
+<ul>
+<li>#🏠 Accueil</a></li>
+<li>#🎭 Spectacles</a></li>
+<li>#🎬 Créations</a></li>
+<li>#🎓 Ateliers</a></li>
+<li>#🤝 Rejoindre la troupe</a></li>
+<li><a hreftact</a></li>
+</ul>
+
+</nav>
+
+<main class="content">
+
+<div class="categories">
+<span>Tous</span>
+<span>Impro</span>
+<span>Spectacles</span>
+<span>Événements</span>
+<span>Ateliers</span>
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+images/affiche.jpg
+
+<div class="card-content">
+
+<h2>L'Histoire qui n'existe pas encore</h2>
+
+<p>
+Une pièce improvisée à partir des idées du public.
+Chaque soir une nouvelle histoire.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+images/affiche.jpg
+
+<div class="card-content">
+
+<h2>La Brique Impro</h2>
+
+<p>
+Association créée à Pfastatt pour promouvoir
+l'improvisation théâtrale et les événements culturels.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+images/affiche.jpg
+
+<div class="card-content">
+
+<h2>Nous rejoindre</h2>
+
+<p>
+Débutant ou confirmé,
+venez découvrir l'univers de l'impro.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<footer>
+
+LA BRIQUE IMPRO<br>
+2 rue de l'Impression<br>
+68120 Pfastatt<br>
+labriqueimpro@gmail.com
+
+</footer>
+
 </body>
 </html>
