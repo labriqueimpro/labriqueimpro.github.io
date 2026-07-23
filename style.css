@@ -402,20 +402,9 @@ footer{
    ========================== */
 
 .fade-in{
-
-    opacity:0;
-
-    transform:translateY(40px);
-
-    transition:1s;
-
-}
-
-.fade-in.visible{
-
     opacity:1;
-
-    transform:translateY(0);
+    transform:none;
+}
 
 }
 
