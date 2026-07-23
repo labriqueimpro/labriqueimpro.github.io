@@ -167,15 +167,17 @@ transform:scale(1.08);
 .hero h1{
 
     font-size:4rem;
-    color:#555;
     font-weight:800;
+    margin-botton:45px;
+    color:black;
 
 }
 
 .hero p{
 
     font-size:1.5rem;
-    color:#555;
+    margin-botton:45px;
+    color:black;
 
 }
 
