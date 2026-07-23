@@ -402,9 +402,18 @@ footer{
    ========================== */
 
 .fade-in{
-    opacity:1;
-    transform:none;
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+
 }
+
+
+.fade-in.visible{
+
+    opacity:1;
+    transform:translateY(0);
 
 }
 
@@ -423,11 +432,23 @@ footer{
 .navbar{
 
     flex-direction:column;
-
+    transition:.4s ease;
     gap:20px;
 
 }
+   
+.navbar.scrolled{
 
+    padding-top:12px;
+    padding-bottom:12px;
+
+    background:white;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+
+}
+   
 .navbar ul{
 
     gap:20px;
