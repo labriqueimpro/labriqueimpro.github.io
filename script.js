@@ -155,7 +155,7 @@ if (hero) {
         const scroll = window.scrollY;
 
         hero.style.backgroundPosition =
-            `center ${50 + scroll * 0.03}%`;
+            `center ${50 + scroll * 0.0001}%`;
 
     });
 
