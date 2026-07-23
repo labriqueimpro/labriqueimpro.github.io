@@ -111,24 +111,50 @@ body{
 
 .hero{
 
-    min-height:100vh;
+overflow:hidden;
 
-    background:
-    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-    url("images/hero.jpg");
+}
 
-    background-size:cover;
-    background-position:center;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.hero::before{
 
-    text-align:center;
+content:"";
 
-    color:white;
+position:absolute;
 
-    padding:0 30px;
+inset:0;
+
+background:
+linear-gradient(
+rgba(0,0,0,.55),
+rgba(0,0,0,.55)
+),
+url("images/hero.jpg");
+
+background-size:cover;
+
+background-position:center;
+
+animation:zoomHero 20s ease infinite alternate;
+
+z-index:-1;
+
+}
+
+
+@keyframes zoomHero{
+
+from{
+
+transform:scale(1);
+
+}
+
+to{
+
+transform:scale(1.08);
+
+}
 
 }
 
