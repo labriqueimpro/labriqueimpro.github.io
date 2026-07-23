@@ -142,31 +142,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /* ======================================
-       PARALLAX IMAGE HERO
-    ====================================== */
+/* ======================================
+   PARALLAX HERO
+====================================== */
 
+const hero = document.querySelector(".hero");
 
-    const hero = document.querySelector(".hero");
+if (hero) {
 
+    window.addEventListener("scroll", () => {
 
-    if (hero) {
+        const scroll = window.scrollY;
 
+        hero.style.backgroundPosition =
+            `center ${50 + scroll * 0.03}%`;
 
-        window.addEventListener("scroll", () => {
+    });
 
-
-            const offset = window.scrollY * 0.35;
-
-
-            hero.style.backgroundPositionY =
-                `${offset}px`;
-
-
-        });
-
-
-    }
+}
 
 
 
