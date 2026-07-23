@@ -10,18 +10,21 @@
 
 const fadeElements = document.querySelectorAll(".fade-in");
 
-const observer = new IntersectionObserver(
-    (entries, observer) => {
+const observer=new IntersectionObserver(entries=>{
 
-        entries.forEach(entry => {
+entries.forEach(entry=>{
 
-            if (entry.isIntersecting) {
+if(entry.isIntersecting){
 
-                entry.target.classList.add("visible");
+entry.target.classList.add("visible");
 
-                observer.unobserve(entry.target);
+}
 
-            }
+})
+
+});
+
+document.querySelectorAll(".fade-in").forEach(el=>observer.observe(el));
 
         });
 
@@ -47,11 +50,12 @@ fadeElements.forEach(element => {
 const navbar = document.querySelector(".navbar");
 
 
-window.addEventListener("scroll", () => {
+window.addEventListener("scroll",()=>{
 
-    if (window.scrollY > 80) {
+document.querySelector(".navbar")
+.classList.toggle("scrolled",window.scrollY>80)
 
-        navbar.classList.add("scrolled");
+});
 
     } else {
 
