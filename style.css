@@ -1,309 +1,321 @@
-/* =========================
-   RESET & GLOBAL
-========================= */
+/* ==========================
+   LA BRIQUE IMPRO
+   ========================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root{
+    --primary:#c0392b;
+    --primary-dark:#a93226;
+    --dark:#1f1f1f;
+    --light:#f8f8f8;
+    --white:#ffffff;
+    --grey:#777;
+    --shadow:0 15px 40px rgba(0,0,0,.12);
 }
 
-html {
-    scroll-behavior: smooth;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-background:#fafafa;
-color:#222;
-font-family:Montserrat,sans-serif;
-}
 
-img {
-    max-width: 100%;
-    display: block;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.fade-in{
-
-opacity:0;
-transform:translateY(40px);
-transition:.8s;
+    font-family:'Montserrat',sans-serif;
+    background:var(--light);
+    color:var(--dark);
+    line-height:1.7;
 
 }
 
-.fade-in.visible{
+/* ==========================
+   NAVBAR
+   ========================== */
 
-opacity:1;
-transform:none;
+.navbar{
+
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 8%;
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+    z-index:1000;
+
+}
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    font-weight:800;
+    font-size:1.1rem;
+
+}
+
+.logo img{
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.navbar ul{
+
+    display:flex;
+    list-style:none;
+    gap:35px;
+
+}
+
+.navbar a{
+
+    text-decoration:none;
+    color:var(--dark);
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.navbar a:hover{
+
+    color:var(--primary);
+
+}
+
+/* ==========================
+   HERO
+   ========================== */
+
+.hero{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url("images/hero.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    color:white;
+
+    padding:0 30px;
+
+}
+
+.hero-content{
+
+    max-width:800px;
+
+}
+
+.hero h1{
+
+    font-size:4rem;
+    margin-bottom:25px;
+
+    font-weight:800;
+
+}
+
+.hero p{
+
+    font-size:1.25rem;
+
+    margin-bottom:45px;
 
 }
 
 .btn{
 
-display:inline-block;
-padding:18px 38px;
-background:#D64545;
-color:white;
-border-radius:50px;
-font-weight:700;
-transition:.3s;
-text-decoration:none;
+    display:inline-block;
+
+    padding:18px 40px;
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:40px;
+
+    font-weight:700;
+
+    transition:.35s;
 
 }
 
 .btn:hover{
 
-background:#b53434;
-transform:translateY(-3px);
+    background:var(--primary-dark);
+
+    transform:translateY(-4px);
 
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* ==========================
+   TITRES
+   ========================== */
 
-header {
-    background: #111;
-}
-
-.navbar{
-
-position:fixed;
-top:0;
-left:0;
-width:100%;
-padding:20px 60px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-transition:.3s;
-z-index:1000;
-
-}
-
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: white;
-    font-weight: 800;
-    letter-spacing: 2px;
-    font-size: 1.1rem;
-}
-
-.logo img {
-    width: 55px;
-    height: 55px;
-    object-fit: contain;
-}
-
-
-.navbar ul {
-    display: flex;
-    gap: 35px;
-    list-style: none;
-}
-
-
-.navbar a {
-    color: white;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-
-.navbar a:hover {
-    color: #e63946;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    height:100vh;
-    background:
-    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-    url(images/hero.jpg) center/cover;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:white;
-}
-
-.hero-content {
-    max-width: 900px;
-    padding: 20px;
-}
-
-.hero h1{
-    font-size:4rem;
-    font-weight:800;
-}
-
-.hero p{
-    max-width:700px;
-    margin:auto;
-    font-size:1.2rem;
-    line-height:1.8;
-}
-
-.btn {
-
-    display: inline-block;
-
-    padding: 15px 35px;
-
-    background:#e63946;
-    color:white;
-
-    border-radius:50px;
-
-    font-weight:700;
-
-    transition:0.3s;
-
-}
-
-
-.btn:hover {
-
-    background:#b92735;
-    transform:translateY(-3px);
-
-}
-
-
-/* =========================
-   SECTIONS
-========================= */
-
-section {
+section{
 
     padding:100px 8%;
 
 }
 
-
-h2 {
+h2{
 
     text-align:center;
 
     font-size:2.8rem;
 
-    margin-bottom:60px;
+    margin-bottom:70px;
 
-    font-weight:800;
-
-    color:#222;
+    position:relative;
 
 }
 
+h2::after{
 
+    content:"";
 
-/* =========================
-   SPECTACLES CARDS
-========================= */
+    width:90px;
+    height:5px;
 
+    background:var(--primary);
 
-.cards {
+    display:block;
 
-overflow:hidden;
-border-radius:18px;
-transition:.35s;
-cursor:pointer;
+    margin:20px auto 0;
+
+    border-radius:5px;
 
 }
 
+/* ==========================
+   CARTES
+   ========================== */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:40px;
+
+}
 
 .card{
 
-overflow:hidden;
-border-radius:18px;
-transition:.35s;
-cursor:pointer;
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    transition:.4s;
 
 }
 
 .card:hover{
 
-transform:translateY(-10px);
-box-shadow:0 20px 50px rgba(0,0,0,.2);
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 50px rgba(0,0,0,.18);
 
 }
 
 .card img{
 
-transition:.6s;
-width:100%;
-height:280px;
-object-fit:cover;
+    width:100%;
+    height:260px;
+
+    object-fit:cover;
+
+    transition:.5s;
+
 }
 
 .card:hover img{
 
-transform:scale(1.08);
+    transform:scale(1.08);
 
 }
 
-
-.card-info {
+.card-info{
 
     padding:30px;
 
 }
 
+.card h3{
 
-.card h3 {
+    margin-bottom:18px;
 
-    font-size:1.4rem;
+    color:var(--primary);
 
-    margin-bottom:15px;
-
-    font-weight:800;
-
-    color:#e63946;
+    font-size:1.5rem;
 
 }
 
-
-.card p {
+.card p{
 
     color:#555;
 
 }
 
-
-/* =========================
+/* ==========================
    ASSOCIATION
-========================= */
+   ========================== */
 
+.dark{
 
-.dark {
-
-    background:#111;
-
-    color:white;
-
-}
-
-
-.dark h2 {
+    background:var(--dark);
 
     color:white;
 
 }
 
+.dark h2{
 
-.container {
+    color:white;
+
+}
+
+.container{
 
     max-width:900px;
 
@@ -313,242 +325,168 @@ transform:scale(1.08);
 
 }
 
+.container p{
 
-.container p {
+    margin-bottom:25px;
 
-    font-size:1.15rem;
-
-    color:#ddd;
+    font-size:1.1rem;
 
 }
 
-
-/* =========================
+/* ==========================
    CONTACT
-========================= */
+   ========================== */
 
+.contact-card{
 
-.contact-card {
+    background:white;
 
     max-width:600px;
 
     margin:auto;
 
-    background:white;
+    padding:50px;
 
-    padding:40px;
+    border-radius:18px;
 
-    border-radius:20px;
+    box-shadow:var(--shadow);
 
     text-align:center;
 
-    box-shadow:
-    0 10px 30px rgba(0,0,0,0.1);
-
 }
 
+.contact-card h3{
 
-.contact-card h3 {
-
-    font-size:1.8rem;
+    color:var(--primary);
 
     margin-bottom:25px;
 
 }
 
+.contact-card p{
 
-.contact-card p {
-
-    margin:15px 0;
+    margin-bottom:20px;
 
 }
 
+.contact-card a{
 
-.contact-card a {
+    color:var(--primary);
 
-    color:#e63946;
+    text-decoration:none;
 
     font-weight:700;
 
 }
 
-
-/* =========================
+/* ==========================
    FOOTER
-========================= */
+   ========================== */
 
+footer{
 
-footer {
+    background:#111;
 
-    background:#000;
-
-    color:#aaa;
+    color:white;
 
     text-align:center;
 
-    padding:30px;
+    padding:35px;
 
-    font-size:0.9rem;
+    font-size:.95rem;
 
 }
 
-
-
-/* =========================
+/* ==========================
    ANIMATIONS
-========================= */
-
+   ========================== */
 
 .fade-in{
 
-opacity:0;
-transform:translateY(40px);
-transition:.8s;
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:1s;
 
 }
 
 .fade-in.visible{
 
-opacity:1;
-transform:none;
+    opacity:1;
+
+    transform:translateY(0);
 
 }
 
-
-@keyframes fadeIn {
-
-    from {
-
-        opacity:0;
-
-        transform:translateY(30px);
-
-    }
-
-
-    to {
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-
-
-/* =========================
-   RESPONSIVE MOBILE
-========================= */
-
+/* ==========================
+   RESPONSIVE
+   ========================== */
 
 @media(max-width:900px){
 
+.hero h1{
 
-    .navbar {
-
-        padding:0 5%;
-
-    }
-
-
-    .logo span {
-
-        display:none;
-
-    }
-
-
-    .navbar ul {
-
-        gap:15px;
-
-    }
-
-
-    .navbar a {
-
-        font-size:0.9rem;
-
-    }
-
-
-    .cards {
-
-        grid-template-columns:1fr;
-
-    }
-
-
-    section {
-
-        padding:70px 5%;
-
-    }
-
-
-    h2 {
-
-        font-size:2.2rem;
-
-    }
-
+    font-size:2.7rem;
 
 }
 
+.navbar{
 
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.navbar ul{
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+section{
+
+    padding:80px 30px;
+
+}
+
+}
 
 @media(max-width:600px){
 
+.hero h1{
 
-    .navbar {
+    font-size:2.2rem;
 
-        height:75px;
+}
 
-    }
+.hero p{
 
+    font-size:1rem;
 
-    .logo img {
+}
 
-        width:45px;
-        height:45px;
+.btn{
 
-    }
+    padding:15px 30px;
 
+}
 
-    .hero {
+.card img{
 
-        min-height:550px;
+    height:220px;
 
-    }
+}
 
+h2{
 
-    .hero h1 {
+    font-size:2rem;
 
-        font-size:2.4rem;
-
-    }
-
-
-    .hero p {
-
-        font-size:1rem;
-
-    }
-
-
-    .navbar ul {
-
-        gap:10px;
-
-    }
-
-
-    .navbar a {
-
-        font-size:0.75rem;
-
-    }
+}
 
 }
