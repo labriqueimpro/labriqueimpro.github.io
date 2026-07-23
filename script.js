@@ -1,130 +1,230 @@
-/* =====================================
+/* ==========================================
    LA BRIQUE IMPRO
    Script principal
-===================================== */
+========================================== */
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================
-       ANIMATION AU SCROLL
-    ===================================== */
 
-    const observer = new IntersectionObserver((entries) => {
+    /* ======================================
+       ANIMATION APPARITION AU SCROLL
+    ====================================== */
 
-        entries.forEach((entry) => {
+    const fadeElements = document.querySelectorAll(".fade-in");
 
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
+
+    if (fadeElements.length > 0) {
+
+
+        const fadeObserver = new IntersectionObserver(
+            (entries) => {
+
+
+                entries.forEach((entry) => {
+
+
+                    if (entry.isIntersecting) {
+
+
+                        entry.target.classList.add("visible");
+
+
+                        // On arrête d'observer une fois visible
+                        fadeObserver.unobserve(entry.target);
+
+
+                    }
+
+
+                });
+
+
+            },
+            {
+                threshold: 0.15
             }
+        );
+
+
+        fadeElements.forEach((element) => {
+
+            fadeObserver.observe(element);
 
         });
 
-    }, {
-        threshold: 0.15
-    });
 
-    document.querySelectorAll(".fade-in").forEach((element) => {
-        observer.observe(element);
-    });
+    }
 
 
-    /* =====================================
+
+    /* ======================================
        NAVBAR AU SCROLL
-    ===================================== */
+    ====================================== */
+
 
     const navbar = document.querySelector(".navbar");
 
-    window.addEventListener("scroll", () => {
 
-        navbar.classList.toggle("scrolled", window.scrollY > 80);
+    if (navbar) {
 
-    });
-
-
-    /* =====================================
-       MENU MOBILE
-    ===================================== */
-
-    document.querySelectorAll(".navbar a").forEach((link) => {
-
-        link.addEventListener("click", () => {
-
-            document.body.classList.remove("menu-open");
-
-        });
-
-    });
-
-
-    /* =====================================
-       PARALLAX HERO
-    ===================================== */
-
-    const hero = document.querySelector(".hero");
-
-    if (hero) {
 
         window.addEventListener("scroll", () => {
 
-            hero.style.backgroundPositionY =
-                `${window.scrollY * 0.35}px`;
 
-        });
-
-    }
+            if (window.scrollY > 80) {
 
 
-    /* =====================================
-       ANNÉE AUTOMATIQUE
-    ===================================== */
-
-    const footer = document.querySelector("footer p");
-
-    if (footer) {
-
-        footer.textContent =
-            `© ${new Date().getFullYear()} La Brique Impro — Tous droits réservés.`;
-
-    }
+                navbar.classList.add("scrolled");
 
 
-    /* =====================================
-       DÉLAI D'APPARITION DES CARTES
-    ===================================== */
-
-    document.querySelectorAll(".card").forEach((card, index) => {
-
-        card.style.transitionDelay = `${index * 0.15}s`;
-
-    });
+            } else {
 
 
-    /* =====================================
-       SCROLL FLUIDE
-    ===================================== */
+                navbar.classList.remove("scrolled");
 
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-
-        anchor.addEventListener("click", function (e) {
-
-            const target = document.querySelector(this.getAttribute("href"));
-
-            if (target) {
-
-                e.preventDefault();
-
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
 
             }
 
+
         });
+
+
+    }
+
+
+
+    /* ======================================
+       SCROLL FLUIDE DES LIENS
+    ====================================== */
+
+
+    const links = document.querySelectorAll('a[href^="#"]');
+
+
+    links.forEach((link) => {
+
+
+        link.addEventListener("click", (event) => {
+
+
+            const targetId = link.getAttribute("href");
+
+
+            const target = document.querySelector(targetId);
+
+
+
+            if (target) {
+
+
+                event.preventDefault();
+
+
+                target.scrollIntoView({
+
+                    behavior: "smooth",
+
+                    block: "start"
+
+                });
+
+
+            }
+
+
+        });
+
 
     });
 
 
-    console.log("🎭 La Brique Impro — Site chargé avec succès !");
+
+
+
+    /* ======================================
+       PARALLAX IMAGE HERO
+    ====================================== */
+
+
+    const hero = document.querySelector(".hero");
+
+
+    if (hero) {
+
+
+        window.addEventListener("scroll", () => {
+
+
+            const offset = window.scrollY * 0.35;
+
+
+            hero.style.backgroundPositionY =
+                `${offset}px`;
+
+
+        });
+
+
+    }
+
+
+
+
+    /* ======================================
+       APPARITION DÉCALÉE DES CARTES
+    ====================================== */
+
+
+    const cards = document.querySelectorAll(".card");
+
+
+    cards.forEach((card, index) => {
+
+
+        card.style.transitionDelay =
+            `${index * 150}ms`;
+
+
+    });
+
+
+
+
+
+
+    /* ======================================
+       ANNÉE AUTOMATIQUE FOOTER
+    ====================================== */
+
+
+    const footerText = document.querySelector("footer p");
+
+
+    if (footerText) {
+
+
+        const year = new Date().getFullYear();
+
+
+        footerText.textContent =
+            `© ${year} La Brique Impro — Tous droits réservés.`;
+
+
+    }
+
+
+
+
+
+    /* ======================================
+       MESSAGE CONSOLE
+    ====================================== */
+
+
+    console.log(
+        "🎭 La Brique Impro — Site chargé avec succès !"
+    );
+
 
 });
