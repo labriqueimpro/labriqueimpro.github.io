@@ -17,34 +17,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (fadeElements.length > 0) {
 
 
-        const fadeObserver = new IntersectionObserver(
-            (entries) => {
+        const fadeObserver = new IntersectionObserver((entries) => {
 
 
-                entries.forEach((entry) => {
+            entries.forEach((entry) => {
 
 
-                    if (entry.isIntersecting) {
+                if (entry.isIntersecting) {
 
 
-                        entry.target.classList.add("visible");
+                    entry.target.classList.add("visible");
 
 
-                        // On arrête d'observer une fois visible
-                        fadeObserver.unobserve(entry.target);
+                    fadeObserver.unobserve(entry.target);
 
 
-                    }
+                }
 
 
-                });
+            });
 
 
-            },
-            {
-                threshold: 0.15
-            }
-        );
+        }, {
+
+            threshold: 0.15
+
+        });
+
 
 
         fadeElements.forEach((element) => {
@@ -55,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     }
+
+
 
 
 
@@ -72,19 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("scroll", () => {
 
 
-            if (window.scrollY > 80) {
-
-
-                navbar.classList.add("scrolled");
-
-
-            } else {
-
-
-                navbar.classList.remove("scrolled");
-
-
-            }
+            navbar.classList.toggle(
+                "scrolled",
+                window.scrollY > 80
+            );
 
 
         });
@@ -94,25 +86,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+
+
     /* ======================================
-       SCROLL FLUIDE DES LIENS
+       SCROLL FLUIDE
     ====================================== */
 
 
-    const links = document.querySelectorAll('a[href^="#"]');
-
-
-    links.forEach((link) => {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
 
         link.addEventListener("click", (event) => {
 
 
-            const targetId = link.getAttribute("href");
-
-
-            const target = document.querySelector(targetId);
-
+            const target = document.querySelector(
+                link.getAttribute("href")
+            );
 
 
             if (target) {
@@ -123,9 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 target.scrollIntoView({
 
-                    behavior: "smooth",
+                    behavior:"smooth",
 
-                    block: "start"
+                    block:"start"
 
                 });
 
@@ -140,20 +130,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-const hero = document.querySelector(".hero");
 
-if (hero) {
 
-    window.addEventListener("scroll", () => {
 
-        const offset = window.scrollY * 0.35;
+    /* ======================================
+       HERO - PARALLAX DOUX
+       (sans saut d'image)
+    ====================================== */
 
-        hero.style.backgroundPositionY =
-            `${offset}px`;
 
-    });
+    const hero = document.querySelector(".hero");
 
-}
+
+    if (hero) {
+
+
+        window.addEventListener("scroll", () => {
+
+
+            const scroll = window.scrollY;
+
+
+            hero.style.backgroundPosition =
+                `center ${50 + scroll * 0.02}%`;
+
+
+        });
+
+
+    }
+
+
+
 
 
 
@@ -163,10 +171,7 @@ if (hero) {
     ====================================== */
 
 
-    const cards = document.querySelectorAll(".card");
-
-
-    cards.forEach((card, index) => {
+    document.querySelectorAll(".card").forEach((card, index) => {
 
 
         card.style.transitionDelay =
@@ -174,6 +179,7 @@ if (hero) {
 
 
     });
+
 
 
 
@@ -191,14 +197,12 @@ if (hero) {
     if (footerText) {
 
 
-        const year = new Date().getFullYear();
-
-
         footerText.textContent =
-            `© ${year} La Brique Impro — Tous droits réservés.`;
+            `© ${new Date().getFullYear()} La Brique Impro — Tous droits réservés.`;
 
 
     }
+
 
 
 
