@@ -1,16 +1,29 @@
-/* ==========================
-   LA BRIQUE IMPRO
-   ========================== */
+/* =====================================
+   LA BRIQUE IMPRO - STYLE 2026
+   Théâtre contemporain / scène / premium
+===================================== */
 
-:root{
+:root {
+
     --primary:#c0392b;
-    --primary-dark:#a93226;
-    --dark:#1f1f1f;
-    --light:#f8f8f8;
+    --primary-dark:#922b21;
+
+    --dark:#151515;
+    --dark-soft:#222;
+
+    --light:#fafafa;
     --white:#ffffff;
-    --grey:#777;
-    --shadow:0 15px 40px rgba(0,0,0,.12);
+
+    --text:#333;
+
+    --shadow:
+    0 20px 50px rgba(0,0,0,.15);
+
+    --radius:20px;
+
 }
+
+
 
 *{
     margin:0;
@@ -18,80 +31,117 @@
     box-sizing:border-box;
 }
 
+
+
 html{
     scroll-behavior:smooth;
 }
 
+
+
 body{
 
     font-family:'Montserrat',sans-serif;
+
     background:var(--light);
-    color:var(--dark);
+
+    color:var(--text);
+
     line-height:1.7;
+
+    overflow-x:hidden;
 
 }
 
-/* ==========================
-   NAVBAR
-   ========================== */
+
+
+/* ===============================
+ NAVBAR
+================================ */
+
 
 .navbar{
 
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
 
+    padding:18px 8%;
+
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
 
-    padding:20px 8%;
+    justify-content:space-between;
 
-    background:rgba(255,255,255,.95);
 
-    backdrop-filter:blur(10px);
+    background:
+    rgba(255,255,255,.88);
 
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    backdrop-filter:blur(15px);
 
     z-index:1000;
 
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
 }
+
+
 
 .logo{
 
     display:flex;
+
     align-items:center;
+
     gap:15px;
 
     font-weight:800;
-    font-size:1.1rem;
+
+    letter-spacing:1px;
 
 }
+
+
 
 .logo img{
 
-    width:55px;
-    height:55px;
+    width:60px;
 
-    border-radius:50%;
+    height:60px;
 
     object-fit:cover;
 
+    border-radius:50%;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.2);
+
 }
+
+
 
 .navbar ul{
 
     display:flex;
-    list-style:none;
+
     gap:35px;
+
+    list-style:none;
 
 }
 
+
+
 .navbar a{
 
+    color:#222;
+
     text-decoration:none;
-    color:var(--dark);
 
     font-weight:600;
 
@@ -99,104 +149,158 @@ body{
 
 }
 
+
+
 .navbar a:hover{
 
     color:var(--primary);
 
 }
 
-/* ==========================
-   HERO
-   ========================== */
+
+
+/* menu mobile */
+
+.menu-toggle{
+
+    display:none;
+
+    background:none;
+
+    border:none;
+
+    font-size:2rem;
+
+    cursor:pointer;
+
+}
+
+
+
+/* ===============================
+ HERO
+================================ */
+
 
 .hero{
 
-overflow:hidden;
-color:#fff;
-display:flex;
+    min-height:100vh;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:120px 8% 80px;
+
+    color:white;
+
+    overflow:hidden;
 
 }
+
 
 
 .hero::before{
 
-content:"";
+    content:"";
 
-position:absolute;
+    position:absolute;
 
-inset:0;
+    inset:0;
 
-background:
-linear-gradient(
-rgba(0,0,0,.55),
-rgba(0,0,0,.55)
-),
-url("images/hero.jpg");
+    background:
 
-background-size:cover;
+    linear-gradient(
+    rgba(0,0,0,.65),
+    rgba(0,0,0,.65)
+    ),
 
-background-position:center;
+    url("images/hero.jpg");
 
-animation:zoomHero 20s ease infinite alternate;
 
-z-index:-1;
+    background-size:cover;
+
+    background-position:center;
+
+    animation:zoom 18s infinite alternate;
+
+    z-index:-1;
+
+}
+
+
+
+@keyframes zoom{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.1);
+    }
 
 }
 
 
-@keyframes zoomHero{
 
-from{
-
-transform:scale(1);
-
-}
-
-to{
-
-transform:scale(1.08);
-
-}
-
-}
 
 .hero-content{
 
-    max-width:800px;
+    max-width:900px;
 
 }
+
+
 
 .hero h1{
 
-    font-size:clamp(3rem,7vw,5rem);
-    margin-bottom:25px;
-    color:#fff;
+    font-size:
+    clamp(3rem,7vw,5.5rem);
+
+    line-height:1.05;
+
     font-weight:800;
-    line-height:1.1;
+
+    margin-bottom:30px;
 
 }
+
+
 
 .hero p{
 
-    font-size:1.3rem;
-    color:rgba(255,255,255,.92);
+    font-size:1.35rem;
+
     margin-bottom:45px;
 
+    color:#eee;
+
 }
+
+
+
+
 
 .btn{
 
     display:inline-block;
 
-    padding:18px 40px;
+    padding:18px 45px;
 
     background:var(--primary);
 
     color:white;
 
-    text-decoration:none;
+    border-radius:50px;
 
-    border-radius:40px;
+    text-decoration:none;
 
     font-weight:700;
 
@@ -204,17 +308,28 @@ transform:scale(1.08);
 
 }
 
+
+
 .btn:hover{
 
     background:var(--primary-dark);
 
-    transform:translateY(-4px);
+    transform:
+    translateY(-5px);
+
+    box-shadow:
+    0 15px 30px rgba(192,57,43,.4);
 
 }
 
-/* ==========================
-   TITRES
-   ========================== */
+
+
+
+
+/* ===============================
+ SECTIONS
+================================ */
+
 
 section{
 
@@ -222,54 +337,67 @@ section{
 
 }
 
+
+
 h2{
 
     text-align:center;
-    color:burlywood;
-    font-size:2.8rem;
+
+    font-size:3rem;
 
     margin-bottom:70px;
 
-    position:relative;
+    color:var(--primary);
 
 }
+
+
 
 h2::after{
 
     content:"";
 
+    display:block;
+
     width:90px;
+
     height:5px;
 
     background:var(--primary);
 
-    display:block;
+    margin:20px auto;
 
-    margin:20px auto 0;
-
-    border-radius:5px;
+    border-radius:10px;
 
 }
 
-/* ==========================
-   CARTES
-   ========================== */
+
+
+
+
+/* ===============================
+ SPECTACLES
+================================ */
+
 
 .cards{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
 
     gap:40px;
 
 }
 
+
+
 .card{
 
     background:white;
 
-    border-radius:18px;
+    border-radius:var(--radius);
 
     overflow:hidden;
 
@@ -279,70 +407,79 @@ h2::after{
 
 }
 
+
+
 .card:hover{
 
-    transform:translateY(-10px);
-
-    box-shadow:0 20px 50px rgba(0,0,0,.18);
+    transform:
+    translateY(-12px);
 
 }
+
+
 
 .card img{
 
     width:100%;
-    height:260px;
+
+    height:280px;
 
     object-fit:cover;
 
-    transition:.5s;
-
 }
 
-.card:hover img{
 
-    transform:scale(1.08);
-
-}
 
 .card-info{
 
-    padding:30px;
+    padding:35px;
 
 }
 
-.card h3{
 
-    margin-bottom:18px;
+
+.card h3{
 
     color:var(--primary);
 
     font-size:1.5rem;
 
-}
-
-.card p{
-
-    color:#555;
+    margin-bottom:15px;
 
 }
 
-/* ==========================
-   ASSOCIATION
-   ========================== */
+
+
+
+
+/* ===============================
+ ASSOCIATION
+================================ */
+
 
 .dark{
 
-    background:var(--dark);
+    background:
+
+    linear-gradient(
+    135deg,
+    #111,
+    #252525
+    );
 
     color:white;
 
 }
+
+
 
 .dark h2{
 
     color:white;
 
 }
+
+
 
 .container{
 
@@ -354,155 +491,205 @@ h2::after{
 
 }
 
+
+
 .container p{
 
     margin-bottom:25px;
 
-    font-size:1.1rem;
+    font-size:1.15rem;
 
 }
 
-/* ==========================
-   CONTACT
-   ========================== */
+
+
+
+
+/* ===============================
+ CONTACT
+================================ */
+
 
 .contact-card{
-
-    background:white;
 
     max-width:600px;
 
     margin:auto;
 
+    background:white;
+
     padding:50px;
 
-    border-radius:18px;
-
-    box-shadow:var(--shadow);
+    border-radius:var(--radius);
 
     text-align:center;
 
+    box-shadow:var(--shadow);
+
 }
+
+
 
 .contact-card h3{
 
     color:var(--primary);
 
+    font-size:1.8rem;
+
     margin-bottom:25px;
 
 }
 
-.contact-card p{
 
-    margin-bottom:20px;
-
-}
 
 .contact-card a{
 
     color:var(--primary);
 
-    text-decoration:none;
-
-    font-weight:700;
-
 }
 
-/* ==========================
-   FOOTER
-   ========================== */
+
+
+
+
+/* ===============================
+ FOOTER
+================================ */
+
 
 footer{
 
-    background:#111;
+    background:#090909;
 
     color:white;
 
+    padding:40px;
+
     text-align:center;
-
-    padding:35px;
-
-    font-size:.95rem;
 
 }
 
-/* ==========================
-   ANIMATIONS
-   ========================== */
+
+
+
+
+/* ===============================
+ ANIMATIONS
+================================ */
+
 
 .fade-in{
 
     opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
+
+    transform:
+    translateY(40px);
+
+    transition:
+    1s ease;
 
 }
+
 
 
 .fade-in.visible{
 
     opacity:1;
-    transform:translateY(0);
+
+    transform:
+    translateY(0);
 
 }
 
-/* ==========================
-   RESPONSIVE
-   ========================== */
+
+
+
+
+/* ===============================
+ MOBILE
+================================ */
+
 
 @media(max-width:900px){
 
-.hero h1{
-
-    font-size:2.7rem;
-
-}
 
 .navbar{
 
-    flex-direction:column;
-    transition:.4s ease;
-    gap:20px;
+    padding:15px 25px;
 
 }
-   
-.navbar.scrolled{
 
-    padding-top:12px;
-    padding-bottom:12px;
+
+.menu-toggle{
+
+    display:block;
+
+}
+
+
+
+.navbar ul{
+
+    display:none;
+
+    position:absolute;
+
+    top:90px;
+
+    left:0;
+
+    width:100%;
 
     background:white;
 
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.15);
+    flex-direction:column;
 
-}
-   
-.navbar ul{
+    text-align:center;
 
-    gap:20px;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
+    padding:30px;
 
 }
 
-section{
 
-    padding:80px 30px;
+
+.navbar ul.active{
+
+    display:flex;
 
 }
 
-}
 
-@media(max-width:600px){
 
 .hero h1{
 
-    font-size:2.2rem;
+    font-size:2.8rem;
 
 }
+
+
+
+section{
+
+    padding:70px 25px;
+
+}
+
+
+
+}
+
+
+
+
+@media(max-width:600px){
+
+
+.logo span{
+
+    font-size:.9rem;
+
+}
+
 
 .hero p{
 
@@ -510,11 +697,20 @@ section{
 
 }
 
+
 .btn{
 
     padding:15px 30px;
 
 }
+
+
+h2{
+
+    font-size:2.2rem;
+
+}
+
 
 .card img{
 
@@ -522,10 +718,5 @@ section{
 
 }
 
-h2{
-
-    font-size:2rem;
-
-}
 
 }
