@@ -718,5 +718,36 @@ h2{
 
 }
 
+.logo img{
+    transition:.4s ease;
+}
 
+
+.navbar.scrolled{
+
+    padding-top:10px;
+    padding-bottom:10px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.15);
+
+}
+
+
+.menu-toggle{
+
+    color:#c0392b;
+
+}
+
+
+@media(max-width:900px){
+
+.menu.active{
+
+    display:flex;
+
+}
+
+}
 }
