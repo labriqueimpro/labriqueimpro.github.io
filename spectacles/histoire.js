@@ -1,150 +1,232 @@
+/* =========================================================
+   LA BRIQUE IMPRO
+   Spectacle : L'Histoire qui n'existe pas encore
+
+   JavaScript
+========================================================= */
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    const navbar = document.querySelector(".navbar");
-    const menu = document.querySelector(".menu");
-    const menuToggle = document.querySelector(".menu-toggle");
-    const menuLinks = document.querySelectorAll(".menu a");
-    const revealElements = document.querySelectorAll(".reveal");
-    const currentYear = document.querySelector("#current-year");
 
 
-    /* =====================================
-       MENU MOBILE
-    ===================================== */
-
-    if (menu && menuToggle) {
-
-        menuToggle.addEventListener("click", () => {
-
-            const menuIsOpen = menu.classList.toggle("active");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                String(menuIsOpen)
-            );
-
-            menuToggle.setAttribute(
-                "aria-label",
-                menuIsOpen
-                    ? "Fermer le menu de navigation"
-                    : "Ouvrir le menu de navigation"
-            );
-
-            menuToggle.textContent = menuIsOpen ? "✕" : "☰";
-
-        });
+    /* -----------------------------------------------------
+       Menu mobile
+    ----------------------------------------------------- */
 
 
-        menuLinks.forEach((link) => {
+    const menuButton =
+        document.querySelector(".menu-toggle");
 
-            link.addEventListener("click", () => {
 
-                menu.classList.remove("active");
+    const menu =
+        document.querySelector(".menu");
 
-                menuToggle.setAttribute(
+
+
+    if (menuButton && menu) {
+
+
+        menuButton.addEventListener(
+            "click",
+            () => {
+
+
+                const isOpen =
+                    menu.classList.toggle("active");
+
+
+                menuButton.setAttribute(
                     "aria-expanded",
-                    "false"
+                    isOpen
                 );
 
-                menuToggle.setAttribute(
-                    "aria-label",
-                    "Ouvrir le menu de navigation"
-                );
 
-                menuToggle.textContent = "☰";
-
-            });
-
-        });
-
-    }
-
-
-    /* =====================================
-       NAVBAR AU DÉFILEMENT
-    ===================================== */
-
-    const updateNavbar = () => {
-
-        if (!navbar) {
-            return;
-        }
-
-        navbar.classList.toggle(
-            "scrolled",
-            window.scrollY > 50
-        );
-
-    };
-
-
-    updateNavbar();
-
-    window.addEventListener(
-        "scroll",
-        updateNavbar,
-        { passive: true }
-    );
-
-
-    /* =====================================
-       ANIMATIONS D'APPARITION
-    ===================================== */
-
-    const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-
-    if (reducedMotion) {
-
-        revealElements.forEach((element) => {
-            element.classList.add("visible");
-        });
-
-    } else if ("IntersectionObserver" in window) {
-
-        const revealObserver = new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach((entry) => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("visible");
-
-                        observer.unobserve(entry.target);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.15
             }
         );
 
 
-        revealElements.forEach((element) => {
-            revealObserver.observe(element);
+
+        /*
+            Fermeture du menu après clic
+            sur un lien
+        */
+
+
+        const menuLinks =
+            menu.querySelectorAll("a");
+
+
+        menuLinks.forEach(link => {
+
+
+            link.addEventListener(
+                "click",
+                () => {
+
+
+                    menu.classList.remove(
+                        "active"
+                    );
+
+
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+
+                }
+            );
+
+
         });
+
+
+    }
+
+
+
+
+
+    /* -----------------------------------------------------
+       Apparition des éléments au scroll
+    ----------------------------------------------------- */
+
+
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+
+
+    if ("IntersectionObserver" in window) {
+
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+
+                    entries.forEach(entry => {
+
+
+                        if (entry.isIntersecting) {
+
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+
+                        }
+
+
+                    });
+
+
+                },
+                {
+                    threshold:0.15
+                }
+            );
+
+
+
+        revealElements.forEach(
+            element => {
+
+                observer.observe(
+                    element
+                );
+
+            }
+        );
+
 
     } else {
 
-        revealElements.forEach((element) => {
-            element.classList.add("visible");
+
+        /*
+            Solution de secours
+            pour anciens navigateurs
+        */
+
+
+        revealElements.forEach(
+            element => {
+
+                element.classList.add(
+                    "visible"
+                );
+
+            }
+        );
+
+
+    }
+
+
+
+
+
+    /* -----------------------------------------------------
+       Défilement doux des ancres
+    ----------------------------------------------------- */
+
+
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(anchor => {
+
+
+            anchor.addEventListener(
+                "click",
+                function(event) {
+
+
+                    const targetId =
+                        this.getAttribute(
+                            "href"
+                        );
+
+
+
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
+
+
+
+                    if (target) {
+
+
+                        event.preventDefault();
+
+
+
+                        target.scrollIntoView(
+                            {
+                                behavior:"smooth",
+                                block:"start"
+                            }
+                        );
+
+
+                    }
+
+
+                }
+            );
+
+
         });
 
-    }
 
-
-    /* =====================================
-       ANNÉE AUTOMATIQUE
-    ===================================== */
-
-    if (currentYear) {
-        currentYear.textContent = new Date().getFullYear();
-    }
 
 });
