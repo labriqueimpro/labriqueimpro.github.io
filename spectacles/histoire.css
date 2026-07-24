@@ -1,586 +1,626 @@
-/* =====================================
-   L'HISTOIRE QUI N'EXISTE PAS ENCORE
-   Styles spécifiques à la page
-===================================== */
+/* =========================================================
+   LA BRIQUE IMPRO
+   Spectacle : L'Histoire qui n'existe pas encore
+   ========================================================= */
 
 
-/* ===============================
-   HERO DU SPECTACLE
-================================ */
+/* ---------------------------------------------------------
+   Variables
+--------------------------------------------------------- */
+
+:root {
+
+    --spectacle-primary: #c84b31;
+    --spectacle-dark: #171717;
+    --spectacle-light: #fffaf3;
+    --spectacle-card: #ffffff;
+    --spectacle-text: #333333;
+
+    --shadow:
+        0 15px 40px rgba(0,0,0,0.12);
+
+    --radius:
+        18px;
+
+}
+
+
+/* ---------------------------------------------------------
+   Héros spectacle
+--------------------------------------------------------- */
+
 
 .spectacle-hero {
-    min-heigh*: 85vh;
-    min-height: 85svh;
 
-  * position: relative;
+    min-height: 75vh;
 
-    display:*flex;
-    align-items: flex-end;
- *  justify-content: center;
+    display: flex;
 
-    pa*ding: 180px 8% 100px;
+    align-items: center;
 
-    color: *ar(--white);
-    text-align: cente*;
+    justify-content: center;
 
-    overflow: hidden;
-}
+    text-align: center;
 
+    padding: 120px 20px 80px;
 
-.spec*acle-hero::before {
-    content: "*;
+    position: relative;
 
-    position: absolute;
-    ins*t: 0;
+    color: white;
 
     background:
-        lin*ar-gradient(
-            to bottom*
-            rgba(0, 0, 0, 0.3),
- *          rgba(0, 0, 0, 0.9)
-     *  ),
-        url("../images/specta*le1.jpg");
+        linear-gradient(
+            rgba(0,0,0,0.65),
+            rgba(0,0,0,0.75)
+        ),
+        url("../images/spectacle1.jpg")
+        center/cover no-repeat;
 
-    background-size: c*ver;
-    background-position: cent*r;
-
-    transform: scale(1.03);
-
- *  z-index: -2;
 }
 
 
-.spectacle-hero*:after {
-    content: "";
+.spectacle-hero-content {
 
-    pos*tion: absolute;
-    inset: 0;
+    max-width: 850px;
 
-   *background:
-        radial-gradien*(
-            circle at center,
-  *         transparent 10%,
-        *   rgba(0, 0, 0, 0.4) 100%
-       *);
-
-    z-index: -1;
 }
 
 
-.spectacl*-hero-content {
-    width: 100%;
- *  max-width: 950px;
-}
+.spectacle-label {
 
+    display: inline-block;
 
-.spectacle*label {
-    display: inline-block;*
+    padding: 8px 18px;
+
     margin-bottom: 25px;
-    padd*ng: 9px 20px;
-
-    background: rgb*(192, 57, 43, 0.92);
 
     border-radius: 50px;
 
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    background:
+        var(--spectacle-primary);
+
+    color:white;
+
+    font-size:0.9rem;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
 }
 
 
+
 .spectacle-hero h1 {
-    margin-bottom: 25px;
 
-    color: var(--white);
+    font-size: clamp(2.4rem,5vw,4.5rem);
 
-    font-size: clamp(2.7rem, 7vw, 5.5rem);
-    font-weight: 800;
-    line-height: 1.05;
+    line-height:1.1;
+
+    margin-bottom:25px;
+
 }
 
 
 .spectacle-hero p {
-    max-width: 760px;
 
-    margin: 0 auto 40px;
+    font-size:1.25rem;
 
-    color: #f1f1f1;
+    line-height:1.7;
 
-    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    max-width:700px;
+
+    margin:0 auto 35px;
+
 }
 
 
-.hero-button {
-    margin-top: 5px;
+/* bouton */
+
+.btn {
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:14px 30px;
+
+    border-radius:50px;
+
+    background:
+        var(--spectacle-primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s ease;
+
 }
 
 
-/* ===============================
-   PRÉSENTATION
-================================ */
+.btn:hover {
+
+    transform:translateY(-3px);
+
+    opacity:.9;
+
+}
+
+
+
+/* ---------------------------------------------------------
+   Présentation
+--------------------------------------------------------- */
+
 
 .spectacle-presentation {
-    b*ckground: var(--light);
+
+    padding:90px 20px;
+
+    background:
+        var(--spectacle-light);
+
 }
 
 
-.spect*cle-layout {
-    max-width: 1200px*
 
-    margin: auto;
+.spectacle-layout {
 
-    display: *rid;
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
 
     grid-template-columns:
- *      minmax(0, 1.5fr)
-        min*ax(280px, 0.7fr);
+        minmax(0,2fr)
+        minmax(300px,1fr);
 
-    gap: 70px;
-*    align-items: start;
+    gap:50px;
+
 }
 
 
-.spect*cle-description h2 {
-    margin-bo*tom: 40px;
 
-    text-align: left;
-*
+.spectacle-description h2,
+.spectacle-details h2 {
 
+    font-size:2rem;
 
-.spectacle-description h2::afte* {
-    margin: 20px 0 0;
+    margin-bottom:25px;
+
 }
 
 
-.spec*acle-description p {
-    margin-bottom: 25px;
 
-    font-size: 1.1rem;
+.spectacle-description p {
+
+    font-size:1.05rem;
+
+    line-height:1.8;
+
+    margin-bottom:20px;
+
+    color:
+        var(--spectacle-text);
+
 }
+
 
 
 .spectacle-description .intro {
-    color: var(--dark);
 
-    font-size: 1.35rem;
-    font-weight: 600;
-    line-height: 1.6;
+    font-size:1.2rem;
+
+    font-weight:600;
+
 }
+
 
 
 .quote {
-    margin: 45px 0;
-    padding: 30px 35px;
 
-    background: var(--white);
+    margin:35px 0;
 
-    border-left: 6px solid var(--primary);
-    border-radius: 0 var(--radius) var(--radius) 0;
+    padding:25px;
 
-    box-shadow: var(--shadow);
+    border-left:5px solid var(--spectacle-primary);
 
-    color: var(--dark);
+    background:white;
 
-    font-size: 1.25rem;
-    font-weight: 600;
-    font-style: italic;
+    border-radius:var(--radius);
+
+    font-size:1.25rem;
+
+    font-style:italic;
+
+    box-shadow:var(--shadow);
+
 }
 
 
-/* ===============================
-   FICHE D'INFORMATIONS
-================================ */
+
+/* ---------------------------------------------------------
+   Bloc informations
+--------------------------------------------------------- */
+
 
 .spectacle-details {
-    position: sticky;
-    top: 125px;
 
-    padding: 40px;
+    background:white;
 
-    background: var(--white);
+    padding:35px;
 
-    border-radius: var(--radius);
+    border-radius:var(--radius);
 
-    box-shadow: var(--shadow);
+    box-shadow:var(--shadow);
+
+    height:max-content;
+
 }
 
-
-.spectacle-details h2 {
-    margin-bottom: 30px;
-
-    color: var(--primary);
-
-    font-size: 1.8rem;
-    text-align: left;
-}
-
-
-.spectacle-details h2::after {
-    width: 60px;
-    height: 4px;
-
-    margin: 12px 0 0;
-}
 
 
 .detail-list {
-    margin-bottom: 30px;
 
-    list-style: none;
+    list-style:none;
+
+    padding:0;
+
+    margin:0 0 30px;
+
 }
+
 
 
 .detail-list li {
-    padding: 18px 0;
 
-    border-bottom: 1px solid #e9e9e9;
+    padding:18px 0;
+
+    border-bottom:1px solid #eee;
+
 }
 
-
-.detail-list li:last-child {
-    border-bottom: none;
-}
 
 
 .detail-label {
-    display: block;
 
-    margin-bottom: 4px;
+    display:block;
 
-    color: var(--primary);
+    font-weight:700;
 
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    color:
+        var(--spectacle-primary);
+
+    margin-bottom:5px;
+
 }
 
 
 .detail-value {
-    color: var(--dark);
 
-    font-weight: 600;
+    color:#555;
+
 }
 
 
-.details-button {
-    width: 100%;
 
-    text-align: center;
-}
+/* ---------------------------------------------------------
+   Expérience
+--------------------------------------------------------- */
 
-
-/* ===============================
-   EXPÉRIENCE
-================================ */
 
 .experience-section {
-    background:
-        linear-gradient(
-            135deg,
-            #111,
-            #252525
-        );
 
-    color: var(--white);
+    padding:90px 20px;
+
+    text-align:center;
+
 }
+
 
 
 .experience-section h2 {
-    color: var(--white);
+
+    font-size:2.5rem;
+
+    margin-bottom:50px;
+
 }
+
 
 
 .experience-grid {
-    max-width: 1200px;
 
-    margin: auto;
+    max-width:1100px;
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    margin:auto;
 
-    gap: 30px;
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:30px;
+
 }
+
 
 
 .experience-card {
-    padding: 40px 30px;
 
-    background: rgba(255, 255, 255, 0.07);
+    padding:35px 25px;
 
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: var(--radius);
+    background:white;
 
-    text-align: center;
+    border-radius:var(--radius);
 
-    transition:
-        transform 0.35s ease,
-        background 0.35s ease;
+    box-shadow:var(--shadow);
+
+    transition:.3s ease;
+
 }
+
 
 
 .experience-card:hover {
-    background: rgba(255, 255, 255, 0.12);
 
-    transform: translateY(-8px);
+    transform:translateY(-8px);
+
 }
+
 
 
 .experience-icon {
-    display: block;
 
-    margin-bottom: 20px;
+    font-size:3rem;
 
-    font-size: 2.5rem;
+    display:block;
+
+    margin-bottom:20px;
+
 }
+
 
 
 .experience-card h3 {
-    margin-bottom: 15px;
 
-    color: var(--white);
+    margin-bottom:15px;
 
-    font-size: 1.35rem;
+    font-size:1.4rem;
+
 }
+
 
 
 .experience-card p {
-    color: #dedede;
+
+    line-height:1.7;
+
+    color:#555;
+
 }
 
 
-/* ===============================
-   RÉSERVATION
-================================ */
+
+/* ---------------------------------------------------------
+   Réservation
+--------------------------------------------------------- */
+
 
 .booking-section {
-    text-align: center;
+
+    padding:90px 20px;
 
     background:
-        linear-gradient(
-            rgba(250, 250, 250, 0.95),
-            rgba(250, 250, 250, 0.95)
-        ),
-        url("../images/spectacle1.jpg");
+        var(--spectacle-dark);
 
-    background-size: cover;
-    background-position: center;
+    color:white;
+
+    text-align:center;
+
 }
+
 
 
 .booking-content {
-    max-width: 800px;
 
-    margin: auto;
+    max-width:800px;
+
+    margin:auto;
+
 }
+
 
 
 .booking-content h2 {
-    margin-bottom: 30px;
+
+    font-size:2.5rem;
+
+    margin-bottom:25px;
+
 }
+
 
 
 .booking-content p {
-    margin-bottom: 40px;
 
-    font-size: 1.2rem;
+    font-size:1.15rem;
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+
 }
+
 
 
 .actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 
-    gap: 20px;
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:40px;
+
 }
 
 
-.btn-secondary {
-    background: transparent;
 
-    border: 2px solid var(--primary);
+.actions a:not(.btn) {
 
-    color: var(--primary);
+    color:white;
+
+    border:1px solid rgba(255,255,255,.4);
+
+    padding:14px 30px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
 }
 
 
-.btn-secondary:hover {
-    background: var(--primary);
 
-    color: var(--white);
+.actions a:not(.btn):hover {
+
+    background:white;
+
+    color:#171717;
+
 }
 
 
-.back-link {
-    display: inline-flex;
-    align-items: center;
 
-    gap: 8px;
+/* ---------------------------------------------------------
+   Animations apparition
+--------------------------------------------------------- */
 
-    margin-top: 35px;
-
-    color: var(--dark);
-
-    font-weight: 700;
-    text-decoration: none;
-
-    transition:
-        color 0.3s ease,
-        transform 0.3s ease;
-}
-
-
-.back-link:hover {
-    color: var(--primary);
-
-    transform: translateX(-4px);
-}
-
-
-/* ===============================
-   ANIMATIONS AU DÉFILEMENT
-================================ */
 
 .reveal {
-    opacity: 0;
 
-    transform: translateY(35px);
+    animation:
+        revealAnimation
+        .8s ease both;
 
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
 }
 
 
-.reveal.visible {
-    opacity: 1;
 
-    transform: translateY(0);
-}
+@keyframes revealAnimation {
 
+    from {
 
-/* ===============================
-   ACCESSIBILITÉ
-================================ */
+        opacity:0;
 
-a:focus-visible,
-button:focus-visible {
-    outline: 3px solid var(--primary);
+        transform:
+            translateY(30px);
 
-    outline-offset: 4px;
-}
-
-
-/* ===============================
-   TABLETTES ET MOBILES
-================================ */
-
-@media (max-width: 900px) {
-
-    .spectacle-hero {
-        min-height: 75vh;
-        min-height: 75svh;
-
-        padding: 150px 25px 80px;
     }
+
+
+    to {
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+
+/* ---------------------------------------------------------
+   Responsive tablette
+--------------------------------------------------------- */
+
+
+@media(max-width:900px) {
 
 
     .spectacle-layout {
-        grid-template-columns: 1fr;
 
-        gap: 50px;
-    }
+        grid-template-columns:1fr;
 
-
-    .spectacle-details {
-        position: static;
     }
 
 
     .experience-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:1fr;
+
     }
+
+
+    .spectacle-hero {
+
+        min-height:65vh;
+
+    }
+
 
 }
 
 
-/* ===============================
-   PETITS ÉCRANS
-================================ */
 
-@media (max-width: 600px) {
+/* ---------------------------------------------------------
+   Responsive mobile
+--------------------------------------------------------- */
 
-    .spectacle-hero h1 {
-        font-size: 2.7rem;
+
+@media(max-width:600px) {
+
+
+    .spectacle-hero {
+
+        padding-top:100px;
+
     }
 
 
-    .spectacle-presentation {
-        padding-top: 70px;
+    .spectacle-hero p {
+
+        font-size:1rem;
+
     }
 
 
-    .spectacle-description h2 {
-        font-size: 2.2rem;
-    }
+    .spectacle-presentation,
+    .experience-section,
+    .booking-section {
 
+        padding:60px 15px;
 
-    .spectacle-description .intro {
-        font-size: 1.15rem;
     }
 
 
     .spectacle-details {
-        padding: 30px 25px;
+
+        padding:25px;
+
     }
 
 
-    .quote {
-        padding: 25px;
+    .booking-content h2,
+    .experience-section h2 {
 
-        font-size: 1.1rem;
+        font-size:2rem;
+
     }
 
-
-    .actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-
-    .actions .btn {
-        width: 100%;
-    }
-
-}
-
-
-/* ===============================
-   RÉDUCTION DES ANIMATIONS
-================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-    html {
-        scroll-behavior: auto;
-    }
-
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-
-
-    .reveal {
-        opacity: 1;
-
-        transform: none;
-    }
 
 }
