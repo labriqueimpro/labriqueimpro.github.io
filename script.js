@@ -1,35 +1,108 @@
 /* ==========================================
    LA BRIQUE IMPRO
-   Script principal
+   Script principal 2026
 ========================================== */
 
 
 document.addEventListener("DOMContentLoaded", () => {
 
 
-    /* ======================================
-       ANIMATION APPARITION AU SCROLL
-    ====================================== */
 
-    const fadeElements = document.querySelectorAll(".fade-in");
-
-
-    if (fadeElements.length > 0) {
+/* ==========================================
+   MENU MOBILE
+========================================== */
 
 
-        const fadeObserver = new IntersectionObserver((entries) => {
+const menuButton = document.querySelector(".menu-toggle");
+const menu = document.querySelector(".menu");
 
 
-            entries.forEach((entry) => {
+if(menuButton && menu){
 
 
-                if (entry.isIntersecting) {
+    menuButton.addEventListener("click",()=>{
 
 
-                    entry.target.classList.add("visible");
+        menu.classList.toggle("active");
 
 
-                    fadeObserver.unobserve(entry.target);
+        const expanded =
+        menuButton.getAttribute("aria-expanded") === "true";
+
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            !expanded
+        );
+
+
+    });
+
+
+
+    // fermeture après clic sur un lien
+
+    document.querySelectorAll(".menu a")
+    .forEach(link=>{
+
+
+        link.addEventListener("click",()=>{
+
+
+            menu.classList.remove("active");
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+
+        });
+
+
+    });
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================
+   APPARITION AU SCROLL
+========================================== */
+
+
+const fadeElements =
+document.querySelectorAll(".fade-in");
+
+
+
+if(fadeElements.length){
+
+
+    const observer =
+    new IntersectionObserver(
+        entries=>{
+
+
+            entries.forEach(entry=>{
+
+
+                if(entry.isIntersecting){
+
+
+                    entry.target.classList.add(
+                        "visible"
+                    );
+
+
+                    observer.unobserve(
+                        entry.target
+                    );
 
 
                 }
@@ -38,74 +111,131 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
 
-        }, {
-
-            threshold: 0.15
-
-        });
-
-
-
-        fadeElements.forEach((element) => {
-
-            fadeObserver.observe(element);
-
-        });
-
-
-    }
+        },
+        {
+            threshold:0.15
+        }
+    );
 
 
 
+    fadeElements.forEach(element=>{
+
+        observer.observe(element);
+
+    });
 
 
-    /* ======================================
-       NAVBAR AU SCROLL
-    ====================================== */
+}
 
 
-    const navbar = document.querySelector(".navbar");
 
 
-    if (navbar) {
 
 
-        window.addEventListener("scroll", () => {
+
+/* ==========================================
+   ANIMATION DES CARTES
+========================================== */
 
 
-            navbar.classList.toggle(
-                "scrolled",
-                window.scrollY > 80
+const cards =
+document.querySelectorAll(".card");
+
+
+
+cards.forEach((card,index)=>{
+
+
+    card.style.transitionDelay =
+    `${index * 150}ms`;
+
+
+});
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   NAVBAR AU SCROLL
+========================================== */
+
+
+const navbar =
+document.querySelector(".navbar");
+
+
+
+if(navbar){
+
+
+    window.addEventListener(
+        "scroll",
+        ()=>{
+
+
+            if(window.scrollY > 80){
+
+
+                navbar.classList.add(
+                    "scrolled"
+                );
+
+
+            }
+            else{
+
+
+                navbar.classList.remove(
+                    "scrolled"
+                );
+
+
+            }
+
+
+        }
+    );
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   SCROLL FLUIDE
+========================================== */
+
+
+document.querySelectorAll(
+'a[href^="#"]'
+)
+.forEach(anchor=>{
+
+
+    anchor.addEventListener(
+        "click",
+        event=>{
+
+
+            const target =
+            document.querySelector(
+                anchor.getAttribute("href")
             );
 
 
-        });
-
-
-    }
-
-
-
-
-
-
-    /* ======================================
-       SCROLL FLUIDE
-    ====================================== */
-
-
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
-
-
-        link.addEventListener("click", (event) => {
-
-
-            const target = document.querySelector(
-                link.getAttribute("href")
-            );
-
-
-            if (target) {
+            if(target){
 
 
                 event.preventDefault();
@@ -123,99 +253,164 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-        });
+        }
+    );
 
 
-    });
+});
 
 
 
 
 
 
-    /* ======================================
-       HERO - PARALLAX DOUX
-       (sans saut d'image)
-    ====================================== */
 
 
-    const hero = document.querySelector(".hero");
+
+/* ==========================================
+   PARALLAX HERO
+========================================== */
 
 
-    if (hero) {
+const hero =
+document.querySelector(".hero");
 
 
-        window.addEventListener("scroll", () => {
+let ticking=false;
 
 
-            const scroll = window.scrollY;
+
+if(hero){
+
+
+window.addEventListener(
+"scroll",
+()=>{
+
+
+    if(!ticking){
+
+
+        window.requestAnimationFrame(()=>{
+
+
+            const offset =
+            window.scrollY * 0.15;
 
 
             hero.style.backgroundPosition =
-                `center ${50 + scroll * 0.02}%`;
+            `center ${50 + offset}%`;
+
+
+
+            ticking=false;
 
 
         });
 
 
-    }
 
-
-
-
-
-
-
-    /* ======================================
-       APPARITION DÉCALÉE DES CARTES
-    ====================================== */
-
-
-    document.querySelectorAll(".card").forEach((card, index) => {
-
-
-        card.style.transitionDelay =
-            `${index * 150}ms`;
-
-
-    });
-
-
-
-
-
-
-
-    /* ======================================
-       ANNÉE AUTOMATIQUE FOOTER
-    ====================================== */
-
-
-    const footerText = document.querySelector("footer p");
-
-
-    if (footerText) {
-
-
-        footerText.textContent =
-            `© ${new Date().getFullYear()} La Brique Impro — Tous droits réservés.`;
+        ticking=true;
 
 
     }
 
 
+});
+
+
+}
 
 
 
 
-    /* ======================================
-       MESSAGE CONSOLE
-    ====================================== */
 
 
-    console.log(
-        "🎭 La Brique Impro — Site chargé avec succès !"
+
+
+/* ==========================================
+   ANIMATION LOGO
+========================================== */
+
+
+const logo =
+document.querySelector(".logo img");
+
+
+
+if(logo){
+
+
+    logo.addEventListener(
+        "mouseenter",
+        ()=>{
+
+
+            logo.style.transform =
+            "rotate(-5deg) scale(1.08)";
+
+
+        }
     );
+
+
+
+    logo.addEventListener(
+        "mouseleave",
+        ()=>{
+
+
+            logo.style.transform =
+            "rotate(0) scale(1)";
+
+
+        }
+    );
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================
+   ANNÉE AUTOMATIQUE FOOTER
+========================================== */
+
+
+const footer =
+document.querySelector("footer p");
+
+
+
+if(footer){
+
+
+    footer.textContent =
+    `© ${new Date().getFullYear()} La Brique Impro — Tous droits réservés.`;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================
+   MESSAGE DEVELOPPEUR
+========================================== */
+
+
+console.log(
+"🎭 La Brique Impro — Expérience immersive chargée."
+);
+
 
 
 });
