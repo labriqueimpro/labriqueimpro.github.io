@@ -1,0 +1,721 @@
+/* =========================================================
+   BANJO BILL
+   Cie La Brique d'Impro
+
+   Ambiance : Western - Souvenirs - Bois - Scène
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   Variables
+--------------------------------------------------------- */
+
+:root {
+
+    --banjo-brown: #6b3f22;
+    --banjo-dark: #24150c;
+    --banjo-leather: #9b5a2e;
+    --banjo-gold: #d29b45;
+
+    --banjo-paper: #f7efdf;
+    --banjo-card: #fffaf0;
+
+    --banjo-text: #38251a;
+
+    --shadow:
+        0 15px 35px rgba(45,25,10,.18);
+
+    --radius:
+        18px;
+
+}
+
+
+
+/* ---------------------------------------------------------
+   Hero
+--------------------------------------------------------- */
+
+
+.spectacle-hero {
+
+    min-height:75vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:120px 20px 90px;
+
+    color:white;
+
+    position:relative;
+
+
+    background:
+
+        linear-gradient(
+            rgba(35,20,8,.72),
+            rgba(35,20,8,.82)
+        ),
+
+        url("../images/banjo-bill.jpg")
+        center/cover no-repeat;
+
+}
+
+
+
+.spectacle-hero::before {
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 30%,
+            rgba(0,0,0,.35)
+        );
+
+}
+
+
+
+.spectacle-hero-content {
+
+    position:relative;
+
+    max-width:850px;
+
+}
+
+
+
+.spectacle-label {
+
+    display:inline-block;
+
+    padding:8px 20px;
+
+    border-radius:50px;
+
+    background:
+
+        var(--banjo-gold);
+
+    color:
+
+        var(--banjo-dark);
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    font-size:.85rem;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.spectacle-hero h1 {
+
+    font-size:
+
+        clamp(2.8rem,5vw,5rem);
+
+    font-family:
+        Georgia,
+        serif;
+
+    letter-spacing:1px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.spectacle-hero p {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-style:italic;
+
+    font-size:1.5rem;
+
+    line-height:1.6;
+
+}
+
+
+
+
+
+/* ---------------------------------------------------------
+   Boutons
+--------------------------------------------------------- */
+
+
+.btn {
+
+    background:
+
+        var(--banjo-gold);
+
+    color:
+
+        var(--banjo-dark);
+
+    border-radius:50px;
+
+    padding:15px 32px;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+    display:inline-flex;
+
+    transition:.3s ease;
+
+}
+
+
+
+.btn:hover {
+
+    transform:
+
+        translateY(-4px);
+
+    background:
+
+        #e3b35c;
+
+}
+
+
+
+
+/* ---------------------------------------------------------
+   Présentation
+--------------------------------------------------------- */
+
+
+.spectacle-presentation {
+
+    background:
+
+        var(--banjo-paper);
+
+    padding:
+
+        90px 20px;
+
+}
+
+
+
+.spectacle-layout {
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+
+        2fr 1fr;
+
+    gap:55px;
+
+}
+
+
+
+
+.spectacle-description {
+
+    background:
+
+        rgba(255,250,240,.7);
+
+    padding:40px;
+
+    border-radius:var(--radius);
+
+}
+
+
+
+.spectacle-description h2 {
+
+    font-family:
+        Georgia,
+        serif;
+
+    color:
+
+        var(--banjo-brown);
+
+    font-size:2rem;
+
+    margin-top:35px;
+
+}
+
+
+
+.spectacle-description h2:first-child {
+
+    margin-top:0;
+
+}
+
+
+
+.spectacle-description p {
+
+    color:
+
+        var(--banjo-text);
+
+    line-height:1.8;
+
+    font-size:1.05rem;
+
+}
+
+
+
+.spectacle-description .intro {
+
+    font-size:1.2rem;
+
+    font-weight:600;
+
+}
+
+
+
+
+/* ---------------------------------------------------------
+   Citation
+--------------------------------------------------------- */
+
+
+.quote {
+
+    margin:40px 0;
+
+    padding:30px;
+
+    background:
+
+        #ead7b7;
+
+    border-left:
+
+        6px solid var(--banjo-leather);
+
+    border-radius:
+
+        var(--radius);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:1.4rem;
+
+    font-style:italic;
+
+    color:
+
+        var(--banjo-dark);
+
+}
+
+
+
+/* ---------------------------------------------------------
+   Informations
+--------------------------------------------------------- */
+
+
+.spectacle-details {
+
+    background:
+
+        var(--banjo-card);
+
+    border:
+
+        1px solid #dec59a;
+
+    padding:35px;
+
+    border-radius:
+
+        var(--radius);
+
+    box-shadow:
+
+        var(--shadow);
+
+    height:max-content;
+
+}
+
+
+
+.spectacle-details h2 {
+
+    font-family:
+        Georgia,
+        serif;
+
+    color:
+
+        var(--banjo-brown);
+
+}
+
+
+
+.detail-list {
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+
+
+.detail-list li {
+
+    padding:18px 0;
+
+    border-bottom:
+
+        1px solid #ead7b7;
+
+}
+
+
+
+.detail-label {
+
+    display:block;
+
+    color:
+
+        var(--banjo-leather);
+
+    font-weight:700;
+
+    margin-bottom:5px;
+
+}
+
+
+
+.detail-value {
+
+    color:
+
+        var(--banjo-text);
+
+}
+
+
+
+
+/* ---------------------------------------------------------
+   Expérience
+--------------------------------------------------------- */
+
+
+.experience-section {
+
+    background:
+
+        #2b1b10;
+
+    color:white;
+
+    padding:
+
+        90px 20px;
+
+    text-align:center;
+
+}
+
+
+
+.experience-section h2 {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:2.5rem;
+
+}
+
+
+
+.experience-grid {
+
+    max-width:1100px;
+
+    margin:50px auto 0;
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(3,1fr);
+
+    gap:30px;
+
+}
+
+
+
+.experience-card {
+
+    background:
+
+        rgba(255,250,240,.08);
+
+    border:
+
+        1px solid rgba(255,255,255,.15);
+
+    padding:35px 25px;
+
+    border-radius:
+
+        var(--radius);
+
+    transition:.3s ease;
+
+}
+
+
+
+.experience-card:hover {
+
+    transform:
+
+        translateY(-8px);
+
+    background:
+
+        rgba(255,255,255,.12);
+
+}
+
+
+
+.experience-icon {
+
+    font-size:3rem;
+
+    display:block;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.experience-card h3 {
+
+    color:
+
+        var(--banjo-gold);
+
+    font-family:
+        Georgia,
+        serif;
+
+}
+
+
+
+/* ---------------------------------------------------------
+   Booking
+--------------------------------------------------------- */
+
+
+.booking-section {
+
+    background:
+
+        var(--banjo-paper);
+
+    padding:
+
+       90px 20px;
+
+    text-align:center;
+
+}
+
+
+
+.booking-content {
+
+    max-width:800px;
+
+    margin:auto;
+
+}
+
+
+
+.booking-content h2 {
+
+    font-family:
+
+        Georgia,
+        serif;
+
+    color:
+
+        var(--banjo-brown);
+
+    font-size:2.5rem;
+
+}
+
+
+
+.booking-content p {
+
+    line-height:1.8;
+
+    color:
+
+        var(--banjo-text);
+
+}
+
+
+
+/* ---------------------------------------------------------
+   Animations
+--------------------------------------------------------- */
+
+
+.reveal {
+
+    opacity:0;
+
+    transform:
+
+        translateY(35px);
+
+    transition:
+
+        opacity .8s ease,
+
+        transform .8s ease;
+
+}
+
+
+
+.reveal.visible {
+
+    opacity:1;
+
+    transform:
+
+        translateY(0);
+
+}
+
+
+
+/* ---------------------------------------------------------
+   Responsive
+--------------------------------------------------------- */
+
+
+@media(max-width:900px) {
+
+
+    .spectacle-layout {
+
+        grid-template-columns:
+
+            1fr;
+
+    }
+
+
+    .experience-grid {
+
+        grid-template-columns:
+
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media(max-width:600px) {
+
+
+    .spectacle-hero {
+
+        padding-top:100px;
+
+    }
+
+
+    .spectacle-hero p {
+
+        font-size:1.15rem;
+
+    }
+
+
+    .spectacle-description {
+
+        padding:25px;
+
+    }
+
+
+    .spectacle-description h2 {
+
+        font-size:1.6rem;
+
+    }
+
+
+}
