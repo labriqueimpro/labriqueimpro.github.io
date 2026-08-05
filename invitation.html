@@ -556,9 +556,7 @@ document
 .addEventListener("click", async()=>{
 
 
-const bouton =
-document.getElementById("generer");
-
+const bouton = document.getElementById("generer");
 
 
 const nom =
@@ -567,50 +565,89 @@ document.getElementById("nom")
 .trim();
 
 
-
 const prenom =
 document.getElementById("prenom")
 .value
 .trim();
 
 
-
 const email =
 document.getElementById("email")
 .value
-.trim();
-
+.trim()
+.toLowerCase();
 
 
 
 if(!nom || !prenom || !email){
 
-
-alert("Merci de remplir tous les champs");
-
-
-return;
-
+    alert("Merci de remplir tous les champs");
+    return;
 
 }
 
-const { data: existant } = await client
+
+// Vérification email
+
+const emailRegex =
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+if(!emailRegex.test(email)){
+
+    alert("Merci d'indiquer une adresse email valide.");
+    return;
+
+}
+
+
+
+// Bloque le bouton immédiatement
+
+bouton.disabled=true;
+bouton.textContent="Vérification...";
+
+
+
+
+// Vérifie si invitation existante
+
+const { data: existant, error: rechercheErreur } = await client
     .from("labriqueimpro")
     .select("id")
     .eq("Email", email)
     .maybeSingle();
 
-if(existant){
-    alert("Une invitation existe déjà pour cet email.");
 
-    bouton.disabled = false;
-    bouton.textContent = "Créer mon invitation";
+
+if(rechercheErreur){
+
+    alert("Erreur de vérification : " + rechercheErreur.message);
+
+    bouton.disabled=false;
+    bouton.textContent="Créer mon invitation";
+
     return;
+
 }
 
-bouton.disabled=true;
-bouton.textContent="Création...";
 
+
+if(existant){
+
+    alert("Une invitation existe déjà pour cet email.");
+
+    bouton.disabled=false;
+    bouton.textContent="Créer mon invitation";
+
+    return;
+
+}
+
+
+
+
+bouton.textContent="Création...";
 
 
 
@@ -626,23 +663,20 @@ crypto.randomUUID()
 
 
 
-const {error} =
 
-await client
+const {error} = await client
 
 .from("labriqueimpro")
 
 .insert({
 
+    numero_billet:numero,
 
-numero_billet:numero,
+    "Nom":nom,
 
-"Nom":nom,
+    "Prénom":prenom,
 
-"Prénom":prenom,
-
-"Email":email
-
+    "Email":email
 
 });
 
@@ -653,16 +687,24 @@ numero_billet:numero,
 if(error){
 
 
-alert(error.message);
+    // Protection supplémentaire grâce au UNIQUE
+
+    if(error.code === "23505"){
+
+        alert("Une invitation existe déjà pour cet email.");
+
+    }
+    else{
+
+        alert(error.message);
+
+    }
 
 
-bouton.disabled=false;
+    bouton.disabled=false;
+    bouton.textContent="Créer mon invitation";
 
-bouton.textContent="Créer mon billet";
-
-
-return;
-
+    return;
 
 }
 
@@ -673,29 +715,21 @@ return;
 document
 .getElementById("nomTicket")
 .textContent =
-
 prenom+" "+nom;
-
-
 
 
 
 document
 .getElementById("numeroTicket")
 .textContent =
-
 numero;
-
-
 
 
 
 document
 .getElementById("numeroSide")
 .textContent =
-
 numero;
-
 
 
 
@@ -707,7 +741,6 @@ window.location.origin +
 "/verification.html?ticket=" +
 
 numero;
-
 
 
 
@@ -727,8 +760,6 @@ encodeURIComponent(url);
 
 
 bouton.textContent="Invitation créée";
-
-
 
 });
 
