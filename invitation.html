@@ -430,15 +430,19 @@ crypto.randomUUID()
 
 
 
-const {error} =
-await client
-.from("billets")
+const { error } = await client
+.from("labriqueimpro")
 .insert({
 
-numero_billet:numero,
-nom,
-prenom,
-email
+    numero_billet: numero,
+
+    "Nom": nom,
+
+    "Prénom": prenom,
+
+    "Email": email,
+
+    date_creation: new Date()
 
 });
 
