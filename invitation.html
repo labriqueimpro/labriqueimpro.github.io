@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitation Gratuite - L'Histoire qui n'existe pas encore</title>
+
+<style>
+:root{
+    --bleu:#6F8F95;
+    --orange:#E66A1B;
+    --jaune:#F4BE00;
+    --bleu-fonce:#175C7D;
+    --gris:#f5f5f5;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background:#ececec;
+    padding:30px;
+}
+
+.ticket{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 6px 20px rgba(0,0,0,.15);
+    display:flex;
+}
+
+.main{
+    flex:3;
+    padding:30px;
+}
+
+.side{
+    flex:1;
+    background:var(--bleu-fonce);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--orange);
+    color:white;
+    padding:8px 16px;
+    border-radius:25px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+h1{
+    margin:0;
+    color:var(--bleu);
+    font-size:42px;
+}
+
+h2{
+    margin-top:5px;
+    color:var(--orange);
+    font-size:28px;
+}
+
+.info{
+    margin-top:25px;
+    background:var(--gris);
+    padding:20px;
+    border-radius:12px;
+}
+
+.info p{
+    margin:10px 0;
+    font-size:18px;
+}
+
+.highlight{
+    color:var(--orange);
+    font-weight:bold;
+}
+
+.price{
+    margin-top:20px;
+    font-size:24px;
+    color:var(--bleu-fonce);
+    font-weight:bold;
+}
+
+.free{
+    color:#28a745;
+}
+
+.footer{
+    margin-top:25px;
+    font-style:italic;
+    color:#666;
+}
+
+.qr{
+    width:180px;
+    height:180px;
+    background:white;
+    padding:10px;
+    border-radius:12px;
+}
+
+.ticket-number{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.print-btn{
+    text-align:center;
+    margin-top:20px;
+}
+
+button{
+    background:var(--orange);
+    color:white;
+    border:none;
+    padding:12px 24px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+@media print{
+    body{
+        background:white;
+        padding:0;
+    }
+
+    .print-btn{
+        display:none;
+    }
+
+    .ticket{
+        box-shadow:none;
+        border:1px solid #ccc;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="ticket">
+
+    <div class="main">
+
+        <div class="badge">INVITATION GRATUITE</div>
+
+        <h1>L'Histoire</h1>
+        <h2>qui n'existe pas encore</h2>
+
+        <p>
+            Une pièce de théâtre improvisée à partir des idées du public.
+        </p>
+
+        <div class="info">
+            <p>📅 <strong>Vendredi 4 septembre 2026</strong></p>
+            <p>🕗 <strong>20h00</strong></p>
+            <p>📍 <strong>Le Cercle - Masevaux</strong></p>
+            <p>🎟️ Invitation valable pour <strong>1 personne</strong></p>
+        </div>
+
+        <div class="price">
+            Valeur : 10 € |
+            <span class="free">À régler : 0 €</span>
+        </div>
+
+        <p>
+            Cette invitation est offerte par
+            <span class="highlight">LA BRIQUE IMPRO</span>.
+        </p>
+
+        <div class="footer">
+            Présenter ce ticket ou le QR code à l'entrée.
+        </div>
+
+    </div>
+
+    <div class="side">
+
+        <!-- QR Code dynamique -->
+        <img
+          class="qr"
+          src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Flabriqueimpro.github.io%2Fspectacles%2Fhistoire.html%3Finvitation%3DINV-2026-001"
+          alt="QR Code">
+   </div>
+
+    </div>
+
+</div>
+
+<div class="print-btn">
+    <button onclick="window.print()">
+        🖨️ Imprimer / Enregistrer en PDF
+    </button>
+</div>
+
+</body>
+</html>
