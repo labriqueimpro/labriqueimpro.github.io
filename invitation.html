@@ -594,11 +594,21 @@ return;
 
 }
 
+const { data: existant } = await client
+    .from("labriqueimpro")
+    .select("id")
+    .eq("Email", email)
+    .maybeSingle();
 
+if(existant){
+    alert("Une invitation existe déjà pour cet email.");
 
+    bouton.disabled = false;
+    bouton.textContent = "Créer mon invitation";
+    return;
+}
 
 bouton.disabled=true;
-
 bouton.textContent="Création...";
 
 
