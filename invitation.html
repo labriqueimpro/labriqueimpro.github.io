@@ -1,9 +1,14 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invitation Gratuite - La Brique Impro</title>
+
+<title>Invitation gratuite - La Brique Impro</title>
+
 
 <style>
 
@@ -14,9 +19,11 @@
     --gris:#f5f5f5;
 }
 
+
 *{
     box-sizing:border-box;
 }
+
 
 body{
     font-family:Arial,sans-serif;
@@ -25,21 +32,29 @@ body{
     padding:20px;
 }
 
-.formulaire{
+
+.formulaire,
+.ticket{
     max-width:900px;
-    margin:0 auto 20px auto;
+    margin:auto;
     background:white;
-    padding:25px;
-    border-radius:15px;
+    border-radius:20px;
     box-shadow:0 6px 20px rgba(0,0,0,.15);
 }
 
-.formulaire h2{
-    margin-top:0;
+
+.formulaire{
+    padding:25px;
+    margin-bottom:25px;
+}
+
+
+h2{
     color:var(--bleu-fonce);
 }
 
-.formulaire input{
+
+input{
     width:100%;
     padding:12px;
     margin-bottom:12px;
@@ -47,77 +62,98 @@ body{
     border-radius:8px;
 }
 
-.ticket{
-    max-width:900px;
-    margin:auto;
-    background:white;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 6px 20px rgba(0,0,0,.15);
-    display:none;
+
+button{
+    background:var(--orange);
+    color:white;
+    border:0;
+    padding:12px 25px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
 }
+
+
+.ticket{
+    display:none;
+    overflow:hidden;
+    flex-direction:row;
+}
+
+
+.ticket.visible{
+    display:flex;
+}
+
 
 .main{
     flex:3;
     padding:30px;
 }
 
+
 .side{
     flex:1;
     background:var(--bleu-fonce);
     color:white;
+    padding:20px;
     display:flex;
     flex-direction:column;
-    justify-content:center;
     align-items:center;
-    padding:20px;
+    justify-content:center;
 }
 
+
 .badge{
-    display:inline-block;
     background:var(--orange);
     color:white;
     padding:8px 16px;
     border-radius:25px;
+    display:inline-block;
     font-weight:bold;
-    margin-bottom:15px;
 }
 
+
 h1{
-    margin:0;
     color:var(--bleu);
     font-size:42px;
+    margin-bottom:0;
 }
+
 
 h3{
     color:var(--orange);
 }
 
+
 .info{
-    margin-top:20px;
     background:var(--gris);
     padding:20px;
     border-radius:12px;
 }
 
+
 .info p{
     margin:8px 0;
 }
+
 
 .highlight{
     color:var(--orange);
     font-weight:bold;
 }
 
+
 .price{
-    margin-top:15px;
     font-size:22px;
     font-weight:bold;
 }
 
+
 .free{
     color:green;
 }
+
 
 .qr{
     width:180px;
@@ -127,45 +163,34 @@ h3{
     border-radius:10px;
 }
 
+
 .ticket-number{
     margin-top:15px;
     text-align:center;
     font-weight:bold;
 }
 
-button{
-    background:var(--orange);
-    color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:8px;
-    cursor:pointer;
-}
 
 .print-btn{
+    display:none;
     text-align:center;
     margin-top:20px;
 }
 
-@media (min-width:769px){
 
-    .ticket{
-        display:flex;
-    }
-
-    .ticket.hidden{
-        display:none;
-    }
-
+.print-btn.visible{
+    display:block;
 }
 
-@media (max-width:768px){
+
+
+@media(max-width:768px){
 
     body{
         padding:10px;
     }
 
-    .ticket{
+    .ticket.visible{
         flex-direction:column;
     }
 
@@ -173,12 +198,9 @@ button{
         font-size:32px;
     }
 
-    .qr{
-        width:150px;
-        height:150px;
-    }
-
 }
+
+
 
 @media print{
 
@@ -188,186 +210,302 @@ button{
 
     .formulaire,
     .print-btn{
-        display:none;
+        display:none!important;
     }
 
     .ticket{
+        display:flex!important;
         box-shadow:none;
-        border:1px solid #ccc;
     }
 
 }
 
+
 </style>
+
+
 </head>
+
 
 <body>
 
+
 <div class="formulaire">
 
-    <h2>Obtenir une invitation gratuite</h2>
+<h2>
+Obtenir une invitation gratuite
+</h2>
 
-    <input type="text" id="nom" placeholder="Nom" required>
 
-    <input type="text" id="prenom" placeholder="Prénom" required>
+<input id="nom"
+       type="text"
+       placeholder="Nom">
 
-    <input type="email" id="email" placeholder="Email">
 
-    <button id="generer">
-        Générer mon billet
-    </button>
+<input id="prenom"
+       type="text"
+       placeholder="Prénom">
 
-</div>
 
-<div class="ticket hidden" id="ticket">
+<input id="email"
+       type="email"
+       placeholder="Email">
 
-    <div class="main">
 
-        <div class="badge">
-            INVITATION GRATUITE
-        </div>
+<button id="generer">
+Générer mon billet
+</button>
 
-        <h1>L'Histoire</h1>
-
-        <h3>qui n'existe pas encore</h3>
-
-        <p>
-            Une pièce de théâtre improvisée à partir des idées du public.
-        </p>
-
-        <div class="info">
-
-            <p>📅 <strong>Vendredi 4 septembre 2026</strong></p>
-
-            <p>🕗 <strong>20h00</strong></p>
-
-            <p>📍 <strong>Le Cercle - Masevaux</strong></p>
-
-            <p>🎟️ <strong>1 personne</strong></p>
-
-        </div>
-
-        <p>
-            Nom :
-            <strong id="nomTicket"></strong>
-        </p>
-
-        <p>
-            Numéro :
-            <strong id="numeroTicket"></strong>
-        </p>
-
-        <div class="price">
-            Valeur : 10 € |
-            <span class="free">
-                À régler : 0 €
-            </span>
-        </div>
-
-        <p>
-            Cette invitation est offerte par
-            <span class="highlight">
-                LA BRIQUE IMPRO
-            </span>
-        </p>
-
-    </div>
-
-    <div class="side">
-
-        
-
-        <div class="ticket-number" id="numeroSide"></div>
-
-    </div>
 
 </div>
 
-<div class="print-btn">
 
-    <button onclick="window.print()">
-        🖨️ Imprimer / Enregistrer en PDF
-    </button>
+
+<div class="ticket" id="ticket">
+
+
+<div class="main">
+
+
+<div class="badge">
+INVITATION GRATUITE
+</div>
+
+
+<h1>
+L'Histoire
+</h1>
+
+
+<h3>
+qui n'existe pas encore
+</h3>
+
+
+<p>
+Une pièce de théâtre improvisée à partir des idées du public.
+</p>
+
+
+<div class="info">
+
+<p>
+📅 <strong>Vendredi 4 septembre 2026</strong>
+</p>
+
+<p>
+🕗 <strong>20h00</strong>
+</p>
+
+<p>
+📍 <strong>Le Cercle - Masevaux</strong>
+</p>
+
+<p>
+🎟️ <strong>1 personne</strong>
+</p>
 
 </div>
 
-https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2
+
+<p>
+Nom :
+<strong id="nomTicket"></strong>
+</p>
+
+
+<p>
+Numéro :
+<strong id="numeroTicket"></strong>
+</p>
+
+
+<div class="price">
+Valeur : 10 € |
+<span class="free">
+À régler : 0 €
+</span>
+</div>
+
+
+<p>
+Invitation offerte par
+<span class="highlight">
+LA BRIQUE IMPRO
+</span>
+</p>
+
+
+</div>
+
+
+
+<div class="side">
+
+
+<img id="qrCode"
+     class="qr"
+     alt="QR code du billet">
+
+
+<div class="ticket-number"
+     id="numeroSide">
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="print-btn" id="printBtn">
+
+<button onclick="window.print()">
+🖨️ Imprimer / Enregistrer en PDF
+</button>
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
-const supabaseUrl = "https://cljfikjldypnakklvefu.supabase.co";
-const supabaseKey = "sb_publishable_OmIM_vF5jfjbaJn_pbFfyw_RogUcwZR";
 
-const client = supabase.createClient(
+const supabaseUrl =
+"https://cljfikjldypnakklvefu.supabase.co";
+
+
+const supabaseKey =
+"sb_publishable_OmIM_vF5jfjbaJn_pbFfyw_RogUcwZR";
+
+
+const client =
+supabase.createClient(
     supabaseUrl,
     supabaseKey
 );
 
+
+
 document
 .getElementById("generer")
-.addEventListener("click", async () => {
+.addEventListener("click", async()=>{
 
-    const nom = document.getElementById("nom").value.trim();
-    const prenom = document.getElementById("prenom").value.trim();
-    const email = document.getElementById("email").value.trim();
 
-    if(!nom || !prenom){
-        alert("Veuillez saisir votre nom et prénom");
-        return;
-    }
+const nom =
+document.getElementById("nom")
+.value.trim();
 
-    const numero =
-        "LBI-2026-" +
-        Date.now();
 
-    const { error } =
-        await client
-        .from("billets")
-        .insert([{
-            numero_billet: numero,
-            nom: nom,
-            prenom: prenom,
-            email: email
-        }]);
+const prenom =
+document.getElementById("prenom")
+.value.trim();
 
-    if(error){
-        alert("Erreur : " + error.message);
-        return;
-    }
 
-    document
-        .getElementById("ticket")
-        .classList.remove("hidden");
+const email =
+document.getElementById("email")
+.value.trim();
 
-    document
-        .getElementById("nomTicket")
-        .innerText = prenom + " " + nom;
 
-    document
-        .getElementById("numeroTicket")
-        .innerText = numero;
 
-    document
-        .getElementById("numeroSide")
-        .innerText = numero;
+if(!nom || !prenom){
 
-    const urlBillet =
-        window.location.origin +
-        window.location.pathname +
-        "?ticket=" +
-        numero;
+alert("Veuillez saisir votre nom et prénom");
+return;
 
-    const qr =
-        "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
-        encodeURIComponent(urlBillet);
+}
 
-    document
-        .getElementById("qrCode")
-        .src = qr;
+
+
+const numero =
+"LBI-2026-" +
+crypto.randomUUID()
+.slice(0,8)
+.toUpperCase();
+
+
+
+const {error} =
+await client
+.from("billets")
+.insert({
+
+numero_billet:numero,
+nom,
+prenom,
+email
 
 });
 
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+
+document
+.getElementById("ticket")
+.classList.add("visible");
+
+
+document
+.getElementById("printBtn")
+.classList.add("visible");
+
+
+
+document
+.getElementById("nomTicket")
+.textContent =
+prenom+" "+nom;
+
+
+
+document
+.getElementById("numeroTicket")
+.textContent =
+numero;
+
+
+
+document
+.getElementById("numeroSide")
+.textContent =
+numero;
+
+
+
+const url =
+window.location.href+
+"?ticket="+numero;
+
+
+
+document
+.getElementById("qrCode")
+.src =
+"https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+
+encodeURIComponent(url);
+
+
+
+});
+
+
 </script>
 
+
 </body>
+
 </html>
+```
