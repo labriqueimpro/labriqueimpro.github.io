@@ -21,13 +21,13 @@ body{
 }
 
 .ticket{
-    max-width:900px;
     margin:auto;
     background:white;
     border-radius:20px;
     overflow:hidden;
     box-shadow:0 6px 20px rgba(0,0,0,.15);
     display:flex;
+    width:100%;
 }
 
 .main{
@@ -147,6 +147,95 @@ button{
         border:1px solid #ccc;
     }
 }
+
+    /* Responsive Mobile */
+@media (max-width: 768px){
+
+    body{
+        padding:10px;
+    }
+
+    .ticket{
+        flex-direction:column;
+        border-radius:15px;
+    }
+
+    .main{
+        padding:20px;
+    }
+
+    .side{
+        padding:20px;
+    }
+
+    h1{
+        font-size:32px;
+        line-height:1.1;
+    }
+
+    h2{
+        font-size:22px;
+    }
+
+    .info p{
+        font-size:16px;
+    }
+
+    .price{
+        font-size:20px;
+    }
+
+    .qr{
+        width:160px;
+        height:160px;
+    }
+
+    .ticket-number{
+        font-size:16px;
+        text-align:center;
+        letter-spacing:1px;
+    }
+
+    button{
+        width:100%;
+        max-width:350px;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 480px){
+
+    h1{
+        font-size:28px;
+    }
+
+    h2{
+        font-size:20px;
+    }
+
+    .badge{
+        font-size:14px;
+        padding:6px 12px;
+    }
+
+    .info{
+        padding:15px;
+    }
+
+    .info p{
+        font-size:14px;
+    }
+
+    .price{
+        font-size:18px;
+    }
+
+    .qr{
+        width:140px;
+        height:140px;
+    }
+}
+    
 </style>
 </head>
 
