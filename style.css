@@ -404,6 +404,8 @@ h2::after{
     box-shadow:var(--shadow);
 
     transition:.4s;
+    display:flex;
+    flex-direction: column;
 
 }
 
@@ -433,10 +435,19 @@ h2::after{
 .card-info{
 
     padding:35px;
-
+    display:flex;
+    flex-direction:column;
+    flex:1;
 }
 
+.card-info p{
+    flex-grow:1;
+    margin-bottom:25px;
+}
 
+.card-info .btn{
+    margin-top:auto;
+}
 
 .card h3{
 
