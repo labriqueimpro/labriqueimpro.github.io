@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Invitation gratuite - La Brique Impro</title>
+<title>Invitation Gratuite - La Brique Impro</title>
 
 <style>
 
@@ -15,9 +15,9 @@
 }
 
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 body{
@@ -27,109 +27,92 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:12px;
+    padding:15px;
 }
 
 .container{
     width:100%;
-    max-width:850px;
+    max-width:900px;
     background:white;
     border-radius:24px;
     overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,.12);
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
-
-/* ---------- HERO ---------- */
 
 .hero{
     padding:25px;
     text-align:center;
-    background:white;
 }
 
 .badge{
     display:inline-block;
+    padding:8px 16px;
     background:var(--orange);
     color:white;
-    font-weight:bold;
-    padding:8px 18px;
     border-radius:30px;
+    font-weight:bold;
     margin-bottom:15px;
-    font-size:.85rem;
 }
 
 .hero h1{
     color:var(--bleu-fonce);
-    font-size:2rem;
     margin-bottom:10px;
+    font-size:2rem;
 }
 
 .hero p{
     color:#666;
-    line-height:1.5;
     margin-bottom:20px;
 }
 
-/* ---------- FORM ---------- */
-
 .formulaire{
-    display:grid;
-    gap:10px;
     max-width:500px;
     margin:auto;
+    display:grid;
+    gap:12px;
 }
 
 input{
+    width:100%;
     padding:14px;
     border:1px solid #ddd;
     border-radius:10px;
     font-size:16px;
 }
 
-input:focus{
-    outline:none;
-    border-color:var(--bleu);
+button{
+    border:none;
+    border-radius:10px;
+    padding:15px;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
 }
 
 #generer{
-    padding:16px;
-    border:none;
-    border-radius:10px;
     background:var(--orange);
     color:white;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.2s;
-}
-
-#generer:hover{
-    opacity:.92;
 }
 
 #generer:disabled{
-    background:#bbb;
-    cursor:not-allowed;
+    background:#ccc;
 }
 
-/* ---------- APERCU BILLET ---------- */
-
 .ticket{
-    background:#f7f7f7;
-    border-top:1px solid #e5e5e5;
     display:flex;
-    align-items:center;
     gap:20px;
+    align-items:center;
+    border-top:1px solid #e5e5e5;
+    background:#f8f8f8;
     padding:20px;
 }
 
 .qr{
-    width:120px;
-    height:120px;
+    width:140px;
+    height:140px;
     background:white;
-    border-radius:10px;
+    border-radius:12px;
     padding:8px;
-    object-fit:contain;
 }
 
 .ticket-content{
@@ -142,8 +125,7 @@ input:focus{
 }
 
 .ticket-content p{
-    margin:4px 0;
-    color:#444;
+    margin:6px 0;
 }
 
 .numero{
@@ -164,52 +146,35 @@ input:focus{
 
 .print{
     text-align:center;
-    padding:15px 20px 25px;
+    padding:20px;
 }
 
 .print button{
     background:var(--bleu-fonce);
     color:white;
-    border:none;
-    padding:12px 20px;
-    border-radius:10px;
-    cursor:pointer;
 }
 
-/* ---------- MOBILE ---------- */
-
 @media(max-width:700px){
-
-    body{
-        align-items:flex-start;
-    }
-
-    .hero{
-        padding:20px;
-    }
-
-    .hero h1{
-        font-size:1.6rem;
-    }
 
     .ticket{
         flex-direction:column;
         text-align:center;
     }
 
+    .hero h1{
+        font-size:1.6rem;
+    }
+
     .qr{
-        width:110px;
-        height:110px;
+        width:120px;
+        height:120px;
     }
 }
-
-/* ---------- IMPRESSION ---------- */
 
 @media print{
 
     body{
         background:white;
-        padding:0;
     }
 
     .formulaire,
@@ -235,31 +200,14 @@ input:focus{
             🎭 INVITATION GRATUITE
         </div>
 
-        <h1>
-            Recevez votre billet en moins de 10 secondes
-        </h1>
+        <h1>Recevez votre billet en moins de 10 secondes</h1>
 
         <p>
             Complétez vos informations pour obtenir immédiatement
-            votre invitation gratuite au spectacle d'improvisation.
+            votre invitation pour le spectacle.
         </p>
 
         <div class="formulaire">
 
             <input
-                id="nom"
-                type="text"
-                placeholder="Nom">
-
-            <input
-                id="prenom"
-                type="text"
-                placeholder="Prénom">
-
-            <input
-                id="email"
-                type="email"
-                placeholder="Email">
-
-            <button id="generer">
-                🎟️ CRÉER
+            
