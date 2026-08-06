@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,6 +114,10 @@ button{
     background:white;
     border-radius:12px;
     padding:8px;
+}
+
+.hidden{
+    display:none;
 }
 
 .ticket-content{
@@ -238,11 +243,9 @@ button{
     <div class="ticket">
 
         <img
-        id="qrCode"
-        class="qr"
-        src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=LaBriqueImpro"
-        alt="QR Code">
-
+            id="qrCode"
+            class="qr hidden"
+            alt="QR Code">
 
         <div class="ticket-content">
 
@@ -294,7 +297,6 @@ button{
 
 </div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -303,169 +305,132 @@ const supabaseUrl =
 "https://cljfikjldypnakklvefu.supabase.co";
 
 const supabaseKey =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNsamZpa2psZHlwbmFra2x2ZWZ1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NTkyNTE0MywiZXhwIjoyMTAxNTAxMTQzfQ.pmajxD8sW4Vih6BCdIGTnAMLmpGE68pxkP5HXhX4ICo";
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNsamZpa2psZHlwbmFra2x2ZWZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU5MjUxNDMsImV4cCI6MjEwMTUwMTE0M30.xyqrQJKxxdYf21uUVC96NzLeNb8KK2cqL6xT914UHjI";
 
 const client = supabase.createClient(
     supabaseUrl,
     supabaseKey
 );
 
-
 document
 .getElementById("generer")
 .addEventListener("click", creerInvitation);
-
-
 
 async function creerInvitation(){
 
     const bouton =
     document.getElementById("generer");
 
-
     const nom =
     document.getElementById("nom")
     .value.trim();
 
-
     const prenom =
     document.getElementById("prenom")
     .value.trim();
-
 
     const email =
     document.getElementById("email")
     .value.trim()
     .toLowerCase();
 
-
-
     if(!nom || !prenom || !email){
-
         alert("Merci de remplir tous les champs.");
         return;
-
     }
-
-
 
     const emailRegex =
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
     if(!emailRegex.test(email)){
-
-        alert("Adresse email invalide.");
+        alert("Adresse e-mail invalide.");
         return;
-
     }
-
-
 
     bouton.disabled = true;
     bouton.innerHTML = "Création en cours...";
 
-
-
-    // Génération numéro billet
-
     const numeroBillet =
     "BRIQUE-" +
-    Date.now()
-    .toString()
-    .slice(-8);
-
-
+    crypto.randomUUID()
+    .slice(0,8)
+    .toUpperCase();
 
     try{
 
-
-        // Enregistrement Supabase
-
-    const { data, error } =
-    await client
-    .from("labriqueimpro")
-    .insert([
-    {
-        numero_billet: numeroBillet,
-        "Nom": nom,
-        "Prénom": prenom,
-        "Email": email
-    }
-    ])
-    .select();
-
-
+        const { error } =
+        await client
+        .from("labriqueimpro")
+        .insert([
+        {
+            numero_billet: numeroBillet,
+            "Nom": nom,
+            "Prénom": prenom,
+            "Email": email
+        }
+        ]);
 
         if(error){
 
             console.error(error);
-            alert(
-            "Erreur lors de la création du billet."
-            );
 
-            bouton.disabled=false;
+            if(error.code === "23505"){
+
+                alert(
+                    "⚠️ Cette adresse e-mail a déjà obtenu une invitation."
+                );
+
+            }else{
+
+                alert(
+                    "Une erreur est survenue lors de la création de votre invitation."
+                );
+
+            }
+
+            bouton.disabled = false;
             bouton.innerHTML =
             "🎟️ CRÉER MON INVITATION GRATUITE";
 
             return;
-
         }
-
-
-
-        // Mise à jour affichage billet
 
         document
         .getElementById("nomTicket")
         .innerText =
         prenom + " " + nom;
 
-
-
         document
         .getElementById("numeroTicket")
         .innerText =
         numeroBillet;
-
-
 
         document
         .getElementById("numeroSide")
         .innerText =
         "Billet : " + numeroBillet;
 
-
-
-        // Mise à jour QR Code
-
         const qrData =
         encodeURIComponent(
-            numeroBillet +
-            "|" +
-            prenom +
-            "|" +
-            nom
+            JSON.stringify({
+                billet: numeroBillet,
+                prenom: prenom,
+                nom: nom,
+                email: email
+            })
         );
 
+        const qr =
+        document.getElementById("qrCode");
 
-        document
-        .getElementById("qrCode")
-        .src =
-        "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="
-        + qrData;
+        qr.src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+        qrData;
 
-
-
-        alert(
-        "Votre invitation gratuite est créée !"
-        );
-
+        qr.classList.remove("hidden");
 
         bouton.innerHTML =
         "✅ INVITATION CRÉÉE";
-
-
 
     }
     catch(err){
@@ -473,19 +438,18 @@ async function creerInvitation(){
         console.error(err);
 
         alert(
-        "Une erreur inattendue est survenue."
+            "Une erreur inattendue est survenue."
         );
 
-
-        bouton.disabled=false;
+        bouton.disabled = false;
 
         bouton.innerHTML =
         "🎟️ CRÉER MON INVITATION GRATUITE";
-
     }
-
 
 }
 
-
 </script>
+
+</body>
+</html>
