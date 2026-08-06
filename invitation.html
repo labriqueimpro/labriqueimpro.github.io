@@ -293,6 +293,7 @@ button{
 
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -303,41 +304,189 @@ const supabaseUrl =
 const supabaseKey =
 "sb_publishable_OmIM_vF5jfjbaJn_pbFfyw_RogUcwZR";
 
-const client =
-supabase.createClient(
+const client = supabase.createClient(
     supabaseUrl,
     supabaseKey
 );
 
+
 document
 .getElementById("generer")
 .addEventListener("click", creerInvitation);
+
+
 
 async function creerInvitation(){
 
     const bouton =
     document.getElementById("generer");
 
+
     const nom =
     document.getElementById("nom")
-    .value
-    .trim();
+    .value.trim();
+
 
     const prenom =
     document.getElementById("prenom")
-    .value
-    .trim();
+    .value.trim();
+
 
     const email =
     document.getElementById("email")
-    .value
-    .trim()
+    .value.trim()
     .toLowerCase();
 
+
+
     if(!nom || !prenom || !email){
+
         alert("Merci de remplir tous les champs.");
         return;
+
     }
+
+
 
     const emailRegex =
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+    if(!emailRegex.test(email)){
+
+        alert("Adresse email invalide.");
+        return;
+
+    }
+
+
+
+    bouton.disabled = true;
+    bouton.innerHTML = "Création en cours...";
+
+
+
+    // Génération numéro billet
+
+    const numeroBillet =
+    "BRIQUE-" +
+    Date.now()
+    .toString()
+    .slice(-8);
+
+
+
+    try{
+
+
+        // Enregistrement Supabase
+
+        const { data, error } =
+        await client
+        .from("invitations")
+        .insert([{
+
+            nom: nom,
+            prenom: prenom,
+            email: email,
+            numero_billet: numeroBillet,
+            spectacle:
+            "L'Histoire qui n'existe pas encore"
+
+        }])
+        .select();
+
+
+
+        if(error){
+
+            console.error(error);
+            alert(
+            "Erreur lors de la création du billet."
+            );
+
+            bouton.disabled=false;
+            bouton.innerHTML =
+            "🎟️ CRÉER MON INVITATION GRATUITE";
+
+            return;
+
+        }
+
+
+
+        // Mise à jour affichage billet
+
+        document
+        .getElementById("nomTicket")
+        .innerText =
+        prenom + " " + nom;
+
+
+
+        document
+        .getElementById("numeroTicket")
+        .innerText =
+        numeroBillet;
+
+
+
+        document
+        .getElementById("numeroSide")
+        .innerText =
+        "Billet : " + numeroBillet;
+
+
+
+        // Mise à jour QR Code
+
+        const qrData =
+        encodeURIComponent(
+            numeroBillet +
+            "|" +
+            prenom +
+            "|" +
+            nom
+        );
+
+
+        document
+        .getElementById("qrCode")
+        .src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="
+        + qrData;
+
+
+
+        alert(
+        "Votre invitation gratuite est créée !"
+        );
+
+
+        bouton.innerHTML =
+        "✅ INVITATION CRÉÉE";
+
+
+
+    }
+    catch(err){
+
+        console.error(err);
+
+        alert(
+        "Une erreur inattendue est survenue."
+        );
+
+
+        bouton.disabled=false;
+
+        bouton.innerHTML =
+        "🎟️ CRÉER MON INVITATION GRATUITE";
+
+    }
+
+
+}
+
+
+</script>
