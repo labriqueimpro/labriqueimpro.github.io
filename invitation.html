@@ -381,20 +381,18 @@ async function creerInvitation(){
 
         // Enregistrement Supabase
 
-        const { data, error } =
-        await client
-        .from("invitations")
-        .insert([{
-
-            Nom: nom,
-            Prénom: prenom,
-            Email: email,
-            numero_billet: numeroBillet,
-            spectacle:
-            "L'Histoire qui n'existe pas encore"
-
-        }])
-        .select();
+    const { data, error } =
+    await client
+    .from("labriqueimpro")
+    .insert([
+    {
+        numero_billet: numeroBillet,
+        "Nom": nom,
+        "Prénom": prenom,
+        "Email": email
+    }
+    ])
+    .select();
 
 
 
