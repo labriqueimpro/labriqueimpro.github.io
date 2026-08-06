@@ -210,4 +210,134 @@ button{
         <div class="formulaire">
 
             <input
-            
+                id="nom"
+                type="text"
+                placeholder="Nom"
+                autocomplete="family-name">
+
+            <input
+                id="prenom"
+                type="text"
+                placeholder="Prénom"
+                autocomplete="given-name">
+
+            <input
+                id="email"
+                type="email"
+                placeholder="Email"
+                autocomplete="email">
+
+            <button id="generer">
+                🎟️ CRÉER MON INVITATION GRATUITE
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="ticket">
+
+       <img
+          id="qrCode"
+          class="qr"
+          src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=LaBriqueImpro"
+          alt="QR Code">
+
+        <div class="ticket-content">
+
+            <h2>L'Histoire qui n'existe pas encore</h2>
+
+            <p>📅 Vendredi 4 septembre 2026</p>
+            <p>🕗 20h00</p>
+            <p>📍 Le Cercle - Masevaux</p>
+            <p>🎟️ 1 personne</p>
+
+            <br>
+
+            <p>
+                Nom :
+                <strong id="nomTicket">
+                    À compléter
+                </strong>
+            </p>
+
+            <p>
+                Billet :
+                <span id="numeroTicket" class="numero">
+                    En attente
+                </span>
+            </p>
+
+            <p>
+                Valeur : 10 € |
+                <span class="gratuit">
+                    À régler : 0 €
+                </span>
+            </p>
+
+            <div
+                id="numeroSide"
+                class="ticket-number">
+                Billet non généré
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="print">
+        <button onclick="window.print()">
+            🖨️ Imprimer / Enregistrer en PDF
+        </button>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const supabaseUrl =
+"https://cljfikjldypnakklvefu.supabase.co";
+
+const supabaseKey =
+"sb_publishable_OmIM_vF5jfjbaJn_pbFfyw_RogUcwZR";
+
+const client =
+supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
+
+document
+.getElementById("generer")
+.addEventListener("click", creerInvitation);
+
+async function creerInvitation(){
+
+    const bouton =
+    document.getElementById("generer");
+
+    const nom =
+    document.getElementById("nom")
+    .value
+    .trim();
+
+    const prenom =
+    document.getElementById("prenom")
+    .value
+    .trim();
+
+    const email =
+    document.getElementById("email")
+    .value
+    .trim()
+    .toLowerCase();
+
+    if(!nom || !prenom || !email){
+        alert("Merci de remplir tous les champs.");
+        return;
+    }
+
+    const emailRegex =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
