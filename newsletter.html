@@ -210,24 +210,53 @@
         © 2026 La Brique Impro — Tous droits réservés.
     </footer>
 
-    <script>
-        document
-            .getElementById('newsletter-form')
-            .addEventListener('submit', function(e) {
+<script>
 
-                e.preventDefault();
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbxtNSETwchGcrUXjIXIt_u2DGzwEZMfsAq08596TOHS5Q4vVfF5uIMRTLYi6cKTiPY3sQ/exec";
 
-                const email =
-                    document.getElementById('email').value;
+document
+.getElementById("newsletter-form")
+.addEventListener("submit", async function(e){
 
-                document.getElementById('message').innerHTML =
-                    "<br>✅ Merci ! Votre inscription a bien été prise en compte.";
+    e.preventDefault();
 
-                console.log(email);
+    const email =
+      document.getElementById("email").value;
 
-                this.reset();
-            });
-    </script>
+    try {
+
+      const response = await fetch(
+        SCRIPT_URL,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email: email
+          })
+        }
+      );
+
+      const result = await response.json();
+
+      document.getElementById("message").innerHTML =
+        "✅ Merci ! Votre inscription a bien été enregistrée.";
+
+      this.reset();
+
+    } catch(error) {
+
+      document.getElementById("message").innerHTML =
+        "❌ Une erreur est survenue.";
+
+      console.error(error);
+    }
+
+});
+
+</script>
 
 </body>
 
