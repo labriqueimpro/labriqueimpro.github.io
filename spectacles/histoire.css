@@ -1,177 +1,125 @@
-/* =========================================================
-   LA BRIQUE IMPRO
-   Spectacle : L'Histoire qui n'existe pas encore
-   ========================================================= */
+/* ==========================================================
+   L'HISTOIRE QUI N'EXISTE PAS ENCORE
+   La Brique Impro
+   Ambiance : page blanche, étincelle, spontanéité
+========================================================== */
 
+:root{
+    --histoire-terracotta:#C74D33;
+    --histoire-night:#3A241C;
+    --histoire-gold:#E8A33D;
+    --histoire-light:#FBF8F5;
+    --histoire-text:#3F332C;
+    --histoire-card:#FFFFFF;
 
-/* ---------------------------------------------------------
-   Variables
---------------------------------------------------------- */
-
-:root {
-
-    --spectacle-primary: #c84b31;
-    --spectacle-dark: #171717;
-    --spectacle-light: #fffaf3;
-    --spectacle-card: #ffffff;
-    --spectacle-text: #333333;
+    --radius:20px;
 
     --shadow:
-        0 15px 40px rgba(0,0,0,0.12);
-
-    --radius:
-        18px;
-
+        0 15px 35px rgba(0,0,0,.10);
 }
 
+/* ==========================================================
+   HERO
+========================================================== */
 
-/* ---------------------------------------------------------
-   Héros spectacle
---------------------------------------------------------- */
+.spectacle-hero{
 
+    min-height:80vh;
 
-.spectacle-hero {
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-    min-height: 75vh;
+    text-align:center;
 
-    display: flex;
+    position:relative;
 
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 120px 20px 80px;
-
-    position: relative;
-
-    color: white;
+    color:white;
 
     background:
         linear-gradient(
-            rgba(0,0,0,0.65),
-            rgba(0,0,0,0.75)
+            rgba(30,18,12,.72),
+            rgba(30,18,12,.86)
         ),
         url("../images/spectacle1.jpg")
-        center/cover no-repeat;
+        center center / cover no-repeat;
 
+    overflow:hidden;
 }
 
+.spectacle-hero::before{
 
-.spectacle-hero-content {
+    content:"";
 
-    max-width: 850px;
-
-}
-
-
-.spectacle-label {
-
-    display: inline-block;
-
-    padding: 8px 18px;
-
-    margin-bottom: 25px;
-
-    border-radius: 50px;
+    position:absolute;
+    inset:0;
 
     background:
-        var(--spectacle-primary);
-
-    color:white;
-
-    font-size:0.9rem;
-
-    font-weight:600;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-
+        radial-gradient(
+            circle at center,
+            rgba(232,163,61,.14),
+            transparent 60%
+        );
 }
 
+.spectacle-hero-content{
 
+    position:relative;
+    z-index:1;
 
-.spectacle-hero h1 {
+    max-width:850px;
 
-    font-size: clamp(2.4rem,5vw,4.5rem);
+    padding:140px 20px 80px;
+}
 
-    line-height:1.1;
+.spectacle-label{
+
+    display:inline-block;
+
+    padding:10px 20px;
 
     margin-bottom:25px;
 
-}
+    background:var(--histoire-gold);
 
-
-.spectacle-hero p {
-
-    font-size:1.25rem;
-
-    line-height:1.7;
-
-    max-width:700px;
-
-    margin:0 auto 35px;
-
-}
-
-
-/* bouton */
-
-.btn {
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:14px 30px;
+    color:#2b1c0e;
 
     border-radius:50px;
 
-    background:
-        var(--spectacle-primary);
-
-    color:white;
-
-    text-decoration:none;
-
-    font-weight:600;
-
-    transition:.3s ease;
-
+    font-weight:700;
+    letter-spacing:1px;
 }
 
+.spectacle-hero h1{
 
-.btn:hover {
+    font-size:clamp(2.6rem,6vw,5rem);
 
-    transform:translateY(-3px);
+    margin-bottom:25px;
 
-    opacity:.9;
-
+    font-weight:800;
 }
 
+.spectacle-hero p{
 
+    font-size:1.3rem;
 
-/* ---------------------------------------------------------
-   Présentation
---------------------------------------------------------- */
+    line-height:1.8;
 
+    color:#f3f4f6;
 
-.spectacle-presentation {
-
-    padding:90px 20px;
-
-    background:
-        var(--spectacle-light);
-
+    margin-bottom:40px;
 }
 
+/* ==========================================================
+   PRESENTATION
+========================================================== */
 
+.spectacle-presentation{
 
-.spectacle-layout {
+    background:var(--histoire-light);
+}
+
+.spectacle-layout{
 
     max-width:1200px;
 
@@ -179,165 +127,149 @@
 
     display:grid;
 
-    grid-template-columns:
-        minmax(0,2fr)
-        minmax(300px,1fr);
+    grid-template-columns:2fr 1fr;
 
     gap:50px;
-
 }
 
-
-
-.spectacle-description h2,
-.spectacle-details h2 {
-
-    font-size:2rem;
-
-    margin-bottom:25px;
-
-}
-
-
-
-.spectacle-description p {
-
-    font-size:1.05rem;
-
-    line-height:1.8;
-
-    margin-bottom:20px;
-
-    color:
-        var(--spectacle-text);
-
-}
-
-
-
-.spectacle-description .intro {
-
-    font-size:1.2rem;
-
-    font-weight:600;
-
-}
-
-
-
-.quote {
-
-    margin:35px 0;
-
-    padding:25px;
-
-    border-left:5px solid var(--spectacle-primary);
+.spectacle-description{
 
     background:white;
+
+    padding:45px;
 
     border-radius:var(--radius);
 
-    font-size:1.25rem;
+    box-shadow:var(--shadow);
+}
+
+.spectacle-description h2{
+
+    color:var(--histoire-terracotta);
+
+    margin-top:35px;
+    margin-bottom:15px;
+
+    font-size:2rem;
+}
+
+.spectacle-description h2:first-child{
+
+    margin-top:0;
+}
+
+.spectacle-description p{
+
+    line-height:1.9;
+
+    color:var(--histoire-text);
+
+    margin-bottom:20px;
+}
+
+.intro{
+
+    font-size:1.2rem;
+}
+
+/* ==========================================================
+   CITATION
+========================================================== */
+
+.quote{
+
+    margin:40px 0;
+
+    padding:30px;
+
+    border-left:6px solid var(--histoire-gold);
+
+    border-radius:15px;
+
+    background:#f7ede1;
 
     font-style:italic;
 
-    box-shadow:var(--shadow);
+    font-size:1.25rem;
 
+    color:var(--histoire-night);
 }
 
+/* ==========================================================
+   INFORMATIONS
+========================================================== */
 
-
-/* ---------------------------------------------------------
-   Bloc informations
---------------------------------------------------------- */
-
-
-.spectacle-details {
+.spectacle-details{
 
     background:white;
 
-    padding:35px;
+    padding:40px;
 
     border-radius:var(--radius);
 
     box-shadow:var(--shadow);
 
     height:max-content;
-
 }
 
+.spectacle-details h2{
 
+    color:var(--histoire-terracotta);
 
-.detail-list {
+    margin-bottom:25px;
+}
+
+.detail-list{
 
     list-style:none;
 
-    padding:0;
-
-    margin:0 0 30px;
-
+    margin-bottom:30px;
 }
 
-
-
-.detail-list li {
+.detail-list li{
 
     padding:18px 0;
 
-    border-bottom:1px solid #eee;
-
+    border-bottom:1px solid #e5e7eb;
 }
 
-
-
-.detail-label {
+.detail-label{
 
     display:block;
 
     font-weight:700;
 
-    color:
-        var(--spectacle-primary);
+    color:var(--histoire-night);
 
     margin-bottom:5px;
-
 }
 
+.detail-value{
 
-.detail-value {
-
-    color:#555;
-
+    color:var(--histoire-text);
 }
 
+/* ==========================================================
+   EXPERIENCE
+========================================================== */
 
+.experience-section{
 
-/* ---------------------------------------------------------
-   Expérience
---------------------------------------------------------- */
+    background:var(--histoire-night);
 
-
-.experience-section {
-
-    padding:90px 20px;
+    color:white;
 
     text-align:center;
-
 }
 
+.experience-section h2{
 
+    color:white;
 
-.experience-section h2 {
-
-    font-size:2.5rem;
-
-    margin-bottom:50px;
-
+    margin-bottom:60px;
 }
 
-
-
-.experience-grid {
+.experience-grid{
 
     max-width:1100px;
 
@@ -345,282 +277,235 @@
 
     display:grid;
 
-    grid-template-columns:
-        repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr);
 
     gap:30px;
-
 }
 
+.experience-card{
 
+    padding:40px 30px;
 
-.experience-card {
+    background:
+        rgba(255,255,255,.08);
 
-    padding:35px 25px;
+    border:
 
-    background:white;
+        1px solid rgba(255,255,255,.12);
 
     border-radius:var(--radius);
 
-    box-shadow:var(--shadow);
-
     transition:.3s ease;
-
 }
 
-
-
-.experience-card:hover {
+.experience-card:hover{
 
     transform:translateY(-8px);
 
+    background:
+        rgba(255,255,255,.12);
 }
 
-
-
-.experience-icon {
-
-    font-size:3rem;
+.experience-icon{
 
     display:block;
 
-    margin-bottom:20px;
+    font-size:3rem;
 
+    margin-bottom:20px;
 }
 
-
-
-.experience-card h3 {
+.experience-card h3{
 
     margin-bottom:15px;
 
-    font-size:1.4rem;
-
+    color:var(--histoire-gold);
 }
 
-
-
-.experience-card p {
+.experience-card p{
 
     line-height:1.7;
-
-    color:#555;
-
 }
 
+/* ==========================================================
+   BOOKING
+========================================================== */
 
+.booking-section{
 
-/* ---------------------------------------------------------
-   Réservation
---------------------------------------------------------- */
-
-
-.booking-section {
-
-    padding:90px 20px;
-
-    background:
-        var(--spectacle-dark);
-
-    color:white;
+    background:var(--histoire-light);
 
     text-align:center;
-
 }
 
-
-
-.booking-content {
+.booking-content{
 
     max-width:800px;
 
     margin:auto;
-
 }
 
+.booking-content h2{
 
+    color:var(--histoire-terracotta);
 
-.booking-content h2 {
+    margin-bottom:25px;
+}
 
-    font-size:2.5rem;
+.booking-content p{
 
     margin-bottom:25px;
 
-}
-
-
-
-.booking-content p {
-
-    font-size:1.15rem;
-
     line-height:1.8;
-
-    margin-bottom:35px;
-
 }
 
-
-
-.actions {
+.booking-content .actions{
 
     display:flex;
 
-    justify-content:center;
+    flex-wrap:wrap;
 
     gap:20px;
 
-    flex-wrap:wrap;
+    justify-content:center;
 
-    margin-bottom:40px;
+    align-items:center;
 
+    margin-bottom:30px;
 }
 
+.booking-content .actions a:not(.btn){
 
+    color:var(--histoire-terracotta);
 
-.actions a:not(.btn) {
+    font-weight:700;
+
+    text-decoration:none;
+}
+
+.booking-content .actions a:not(.btn):hover{
+
+    text-decoration:underline;
+}
+
+.booking-content > a{
+
+    display:inline-block;
+
+    color:var(--histoire-text);
+
+    font-weight:600;
+
+    text-decoration:none;
+}
+
+.booking-content > a:hover{
+
+    text-decoration:underline;
+}
+
+/* ==========================================================
+   BOUTONS
+========================================================== */
+
+.btn{
+
+    display:inline-block;
+
+    padding:16px 34px;
+
+    background:var(--histoire-terracotta);
 
     color:white;
 
-    border:1px solid rgba(255,255,255,.4);
+    text-decoration:none;
 
-    padding:14px 30px;
+    font-weight:700;
 
     border-radius:50px;
 
-    text-decoration:none;
-
+    transition:.3s;
 }
 
+.btn:hover{
 
+    background:var(--histoire-night);
 
-.actions a:not(.btn):hover {
+    transform:translateY(-4px);
 
-    background:white;
-
-    color:#171717;
-
+    box-shadow:
+        0 12px 25px rgba(0,0,0,.15);
 }
 
+/* ==========================================================
+   REVEAL
+========================================================== */
 
+.reveal{
 
-/* ---------------------------------------------------------
-   Animations apparition
---------------------------------------------------------- */
+    opacity:0;
 
+    transform:translateY(30px);
 
-.reveal {
-
-    animation:
-        revealAnimation
-        .8s ease both;
-
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
 }
 
+.reveal.visible{
 
+    opacity:1;
 
-@keyframes revealAnimation {
-
-    from {
-
-        opacity:0;
-
-        transform:
-            translateY(30px);
-
-    }
-
-
-    to {
-
-        opacity:1;
-
-        transform:
-            translateY(0);
-
-    }
-
+    transform:translateY(0);
 }
 
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
 
+@media(max-width:900px){
 
-/* ---------------------------------------------------------
-   Responsive tablette
---------------------------------------------------------- */
-
-
-@media(max-width:900px) {
-
-
-    .spectacle-layout {
+    .spectacle-layout{
 
         grid-template-columns:1fr;
-
     }
 
-
-    .experience-grid {
+    .experience-grid{
 
         grid-template-columns:1fr;
-
     }
 
+    .spectacle-description,
+    .spectacle-details{
 
-    .spectacle-hero {
-
-        min-height:65vh;
-
+        padding:30px;
     }
-
-
 }
 
+@media(max-width:600px){
 
+    .spectacle-hero{
 
-/* ---------------------------------------------------------
-   Responsive mobile
---------------------------------------------------------- */
-
-
-@media(max-width:600px) {
-
-
-    .spectacle-hero {
-
-        padding-top:100px;
-
+        min-height:70vh;
     }
 
+    .spectacle-hero h1{
 
-    .spectacle-hero p {
-
-        font-size:1rem;
-
+        font-size:2.4rem;
     }
 
+    .spectacle-hero p{
 
-    .spectacle-presentation,
-    .experience-section,
-    .booking-section {
-
-        padding:60px 15px;
-
+        font-size:1.05rem;
     }
 
+    .spectacle-description h2{
 
-    .spectacle-details {
-
-        padding:25px;
-
+        font-size:1.6rem;
     }
 
+    .quote{
 
-    .booking-content h2,
-    .experience-section h2 {
-
-        font-size:2rem;
-
+        font-size:1.1rem;
     }
-
-
 }
