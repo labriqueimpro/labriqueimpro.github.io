@@ -1,315 +1,216 @@
-/* =========================================================
+/* ==========================================================
    BANJO BILL
-   Cie La Brique d'Impro
-
+   La Brique Impro
    JavaScript
-   Ambiance : narration - souvenirs - scène
-========================================================= */
-
+   Ambiance : bois - cuivre - veillée - souvenirs
+========================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-
-
-    /* -----------------------------------------------------
-       Année automatique du footer
-    ----------------------------------------------------- */
-
+    /* ------------------------------------------------------
+       Année automatique
+    ------------------------------------------------------ */
 
     const year =
-        document.getElementById("current-year");
-
+        document.getElementById("current-year") ||
+        document.getElementById("year");
 
     if (year) {
-
         year.textContent =
             new Date().getFullYear();
-
     }
 
-
-
-
-    /* -----------------------------------------------------
+    /* ------------------------------------------------------
        Menu mobile
-    ----------------------------------------------------- */
-
+    ------------------------------------------------------ */
 
     const menuButton =
         document.querySelector(".menu-toggle");
 
-
     const menu =
         document.querySelector(".menu");
 
-
-
     if (menuButton && menu) {
-
 
         menuButton.addEventListener(
             "click",
             () => {
 
-
-                const opened =
+                const active =
                     menu.classList.toggle("active");
-
 
                 menuButton.setAttribute(
                     "aria-expanded",
-                    opened
+                    active
                 );
-
-
             }
         );
 
+        menu
+            .querySelectorAll("a")
+            .forEach(link => {
 
+                link.addEventListener(
+                    "click",
+                    () => {
 
-        const links =
-            menu.querySelectorAll("a");
+                        menu.classList.remove(
+                            "active"
+                        );
 
+                        menuButton.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+                    }
+                );
 
-
-        links.forEach(link => {
-
-
-            link.addEventListener(
-                "click",
-                () => {
-
-
-                    menu.classList.remove(
-                        "active"
-                    );
-
-
-                    menuButton.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-
-                }
-            );
-
-
-        });
-
-
+            });
     }
 
-
-
-
-
-    /* -----------------------------------------------------
+    /* ------------------------------------------------------
        Apparition au scroll
-    ----------------------------------------------------- */
+    ------------------------------------------------------ */
 
-
-    const revealElements =
+    const reveals =
         document.querySelectorAll(".reveal");
-
-
 
     if ("IntersectionObserver" in window) {
 
-
-        const revealObserver =
+        const observer =
             new IntersectionObserver(
-                elements => {
+                entries => {
 
+                    entries.forEach(entry => {
 
-                    elements.forEach(
-                        element => {
+                        if (
+                            entry.isIntersecting
+                        ) {
 
+                            entry.target.classList.add(
+                                "visible"
+                            );
 
-                            if (element.isIntersecting) {
-
-
-                                element.target.classList.add(
-                                    "visible"
-                                );
-
-
-                                revealObserver.unobserve(
-                                    element.target
-                                );
-
-
-                            }
-
-
+                            observer.unobserve(
+                                entry.target
+                            );
                         }
-                    );
 
+                    });
 
                 },
                 {
-                    threshold:0.15
+                    threshold: 0.15
                 }
             );
 
-
-
-        revealElements.forEach(
-            element => {
-
-                revealObserver.observe(
-                    element
-                );
-
-            }
-        );
-
-
+        reveals.forEach(element => {
+            observer.observe(element);
+        });
 
     } else {
 
-
-        revealElements.forEach(
-            element => {
-
-                element.classList.add(
-                    "visible"
-                );
-
-            }
-        );
-
+        reveals.forEach(element => {
+            element.classList.add("visible");
+        });
 
     }
 
-
-
-
-
-    /* -----------------------------------------------------
+    /* ------------------------------------------------------
        Navigation douce
-    ----------------------------------------------------- */
-
+    ------------------------------------------------------ */
 
     document
-        .querySelectorAll('a[href^="#"]')
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
         .forEach(anchor => {
-
 
             anchor.addEventListener(
                 "click",
-                function(event) {
-
-
-                    const targetId =
-                        this.getAttribute("href");
-
-
+                function (event) {
 
                     const target =
                         document.querySelector(
-                            targetId
+                            this.getAttribute(
+                                "href"
+                            )
                         );
-
-
 
                     if (target) {
 
-
                         event.preventDefault();
 
-
-
-                        target.scrollIntoView(
-                            {
-                                behavior:"smooth",
-                                block:"start"
-                            }
-                        );
-
-
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
                     }
-
-
                 }
             );
 
-
         });
 
-
-
-
-
-
-    /* -----------------------------------------------------
-       Effet souvenir / scène sur le hero
-       léger déplacement de l'image
-    ----------------------------------------------------- */
-
+    /* ------------------------------------------------------
+       Parallax léger sur le hero
+    ------------------------------------------------------ */
 
     const hero =
-        document.querySelector(".spectacle-hero");
-
-
+        document.querySelector(
+            ".spectacle-hero"
+        );
 
     if (hero) {
-
 
         window.addEventListener(
             "scroll",
             () => {
 
-
                 const scroll =
                     window.scrollY;
 
-
-
-                if (scroll < 500) {
-
+                if (scroll < 700) {
 
                     hero.style.backgroundPosition =
-                        `center ${scroll * 0.25}px`;
-
-
+                        `center ${scroll * 0.2}px`;
                 }
-
 
             }
         );
 
-
     }
 
+    /* ------------------------------------------------------
+       Halo lumineux interactif
+    ------------------------------------------------------ */
 
+    if (hero) {
 
+        hero.addEventListener(
+            "mousemove",
+            event => {
 
+                const rect =
+                    hero.getBoundingClientRect();
 
-    /* -----------------------------------------------------
-       Petite touche "vivante"
-       apparition progressive des cartes
-    ----------------------------------------------------- */
+                const x =
+                    event.clientX - rect.left;
 
+                const y =
+                    event.clientY - rect.top;
 
-    const cards =
-        document.querySelectorAll(
-            ".experience-card"
+                hero.style.setProperty(
+                    "--mouse-x",
+                    `${x}px`
+                );
+
+                hero.style.setProperty(
+                    "--mouse-y",
+                    `${y}px`
+                );
+            }
         );
 
-
-
-    cards.forEach(
-        (card, index) => {
-
-
-            card.style.transitionDelay =
-                `${index * 120}ms`;
-
-
-        }
-    );
-
-
+    }
 
 });
