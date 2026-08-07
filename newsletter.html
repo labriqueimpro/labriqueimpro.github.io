@@ -7,10 +7,16 @@
 
     <title>Newsletter | La Brique Impro</title>
 
+    images/logo.jpeg
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300        margin: 0;
+
+    <style>
+
+        * {
+            margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
@@ -19,196 +25,412 @@
             font-family: 'Montserrat', sans-serif;
             background: #fafafa;
             color: #222;
-            line-height: 1.6;
-        }
-
-        .navbar {
-            background: white;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,.08);
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .navbar img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-        }
-
-        .navbar span {
-            font-size: 1.4rem;
-            font-weight: 800;
         }
 
         .hero {
-            min-height: 75vh;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.72),
+                    rgba(0,0,0,.72)
+                ),
+                url("images/spectacle1.jpg");
+
+            background-size: cover;
+            background-position: center;
 
             display: flex;
             justify-content: center;
             align-items: center;
 
-            padding: 40px 20px;
+            padding: 30px;
         }
 
         .newsletter-card {
-            background: white;
-            max-width: 700px;
+
             width: 100%;
+            max-width: 760px;
 
-            padding: 50px;
+            background: rgba(255,255,255,.97);
 
-            border-radius: 20px;
+            backdrop-filter: blur(10px);
 
-            box-shadow: 0 10px 30px rgba(0,0,0,.08);
+            border-radius: 24px;
+
+            padding: 60px;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.30);
+
+            position: relative;
+
+            overflow: hidden;
+
+            animation: apparition .8s ease;
+        }
+
+        .newsletter-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 8px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #c74d33,
+                    #ff8c42
+                );
+        }
+
+        @keyframes apparition {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            width: 90px;
+            height: 90px;
+
+            border-radius: 50%;
+
+            display: block;
+
+            margin: 0 auto 20px auto;
+
+            object-fit: cover;
+        }
+
+        .badge {
+
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 999px;
+
+            background: #c74d33;
+
+            color: white;
+
+            font-size: .85rem;
+
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+        h1 {
+
+            font-size: 3rem;
+
+            line-height: 1.1;
+
+            margin-bottom: 20px;
 
             text-align: center;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
         .intro {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
+
+            text-align: center;
+
             color: #555;
+
+            margin-bottom: 35px;
+
+            font-size: 1.05rem;
         }
 
         form {
+
             display: flex;
             flex-direction: column;
+
             gap: 15px;
         }
 
         input[type="email"] {
-            padding: 16px;
+
+            padding: 18px;
+
             border: 2px solid #ddd;
-            border-radius: 10px;
+
+            border-radius: 14px;
+
             font-size: 1rem;
+
+            transition: .3s;
         }
 
         input[type="email"]:focus {
+
             outline: none;
-            border-color: #b33a3a;
+
+            border-color: #c74d33;
+
+            box-shadow:
+                0 0 0 5px rgba(199,77,51,.15);
         }
 
         .btn {
-            background: #b33a3a;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c74d33,
+                    #962d1b
+                );
+
             color: white;
+
             border: none;
-            padding: 16px;
-            border-radius: 10px;
-            cursor: pointer;
+
+            padding: 18px;
+
+            border-radius: 14px;
+
             font-size: 1rem;
+
             font-weight: 700;
+
+            cursor: pointer;
+
             transition: .3s;
         }
 
         .btn:hover {
-            background: #922e2e;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 25px rgba(199,77,51,.35);
         }
 
-        .rgpd {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 25px;
+        .benefits {
+
+            display: grid;
+
+            grid-template-columns: repeat(3,1fr);
+
+            gap: 10px;
+
+            margin: 30px 0;
         }
 
-        .back {
-            display: inline-block;
-            margin-top: 30px;
-            color: #b33a3a;
-            text-decoration: none;
+        .benefit {
+
+            background: #f5f1ee;
+
+            border-radius: 12px;
+
+            padding: 15px;
+
+            text-align: center;
+
+            font-size: .9rem;
+
             font-weight: 600;
         }
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #777;
+        .success {
+
+            margin-top: 20px;
+
+            background: #e8fff0;
+
+            color: #10793f;
+
+            padding: 14px;
+
+            border-radius: 10px;
         }
 
-        @media (max-width: 768px) {
+        .error {
+
+            margin-top: 20px;
+
+            background: #fff0f0;
+
+            color: #b00020;
+
+            padding: 14px;
+
+            border-radius: 10px;
+        }
+
+        .community {
+
+            margin-top: 25px;
+
+            text-align: center;
+
+            color: #666;
+
+            font-size: .95rem;
+        }
+
+        blockquote {
+
+            margin-top: 30px;
+
+            padding: 20px;
+
+            background: #faf5f2;
+
+            border-left: 5px solid #c74d33;
+
+            border-radius: 10px;
+
+            font-style: italic;
+
+            color: #444;
+        }
+
+        .rgpd {
+
+            margin-top: 20px;
+
+            color: #777;
+
+            font-size: 0.85rem;
+        }
+
+        .back {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            color: #c74d33;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+
+            text-align: center;
+
+            padding: 20px;
+
+            color: white;
+        }
+
+        @media(max-width:768px){
 
             .newsletter-card {
-                padding: 30px;
+                padding: 35px;
             }
 
             h1 {
                 font-size: 2rem;
             }
+
+            .benefits {
+                grid-template-columns: 1fr;
+            }
         }
+
     </style>
+
 </head>
 
 <body>
 
-    <header>
+<section class="hero">
 
-        <nav class="navbar">
+    <div class="newsletter-card">
 
-            images/logo.jpeg
+        <div style="text-align:center;">
+            <span class="badge">
+                🎭 Newsletter officielle
+            </span>
+        </div>
 
-            <span>LA BRIQUE IMPRO</span>
+        <h1>
+            Entrez dans les coulisses
+            de La Brique Impro
+        </h1>
 
-        </nav>
+        <p class="intro">
+            Recevez les prochaines dates de spectacle,
+            nos créations originales, les coulisses de la compagnie
+            et quelques surprises improvisées.
+        </p>
 
-    </header>
+        <form id="newsletter-form">
 
-    <main>
+            <input
+                type="email"
+                id="email"
+                placeholder="Votre adresse e-mail"
+                required>
 
-        <section class="hero">
+            <button class="btn" type="submit">
+                Je rejoins l'aventure
+            </button>
 
-            <div class="newsletter-card">
+        </form>
 
-                <h1>L'histoire continue avec vous</h1>
+        <div id="message"></div>
 
-                <p class="intro">
-                    Recevez les dates de spectacle, les nouveautés de la compagnie
-                    et les actualités de La Brique Impro directement dans votre boîte mail.
-                </p>
+        <div class="benefits">
 
-                <form id="newsletter-form">
-
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Votre adresse e-mail"
-                        required>
-
-                    <button class="btn" type="submit">
-                        Je m'inscris à la newsletter
-                    </button>
-
-                </form>
-
-                <p id="message"></p>
-
-                <p class="rgpd">
-                    En vous inscrivant, vous acceptez de recevoir les informations
-                    relatives aux activités de La Brique Impro.
-                    Vous pourrez demander la suppression de votre adresse e-mail
-                    à tout moment.
-                </p>
-
-                <a class="back" href="index.html">
-                    ← Retour au site
-                </a>
-
+            <div class="benefit">
+                🎟️ Dates de spectacles
             </div>
 
-        </section>
+            <div class="benefit">
+                🎭 Coulisses
+            </div>
 
-    </main>
+            <div class="benefit">
+                ✨ Infos exclusives
+            </div>
 
-    <footer>
-        © 2026 La Brique Impro — Tous droits réservés.
-    </footer>
+        </div>
+
+        <p class="community">
+            🎉 Rejoignez la communauté des spectateurs de La Brique Impro
+        </p>
+
+        <blockquote>
+            « Nous avons fait une erreur ? C’est bien. Nous venons d’apprendre quelque chose. » - Keith Johnstone
+        </blockquote>
+
+        <p class="rgpd">
+            En vous inscrivant, vous acceptez de recevoir les informations relatives aux activités de La Brique Impro.
+            Vous pourrez demander la suppression de votre adresse e-mail à tout moment.
+        </p>
+
+        <a class="back" href="index.html">
+            ← Retour au site
+        </a>
+
+    </div>
+
+</section>
 
 <script>
 
@@ -226,38 +448,56 @@ document
 
     try {
 
-      const response = await fetch(
-        SCRIPT_URL,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            email: email
-          })
+        const response = await fetch(
+            SCRIPT_URL,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if(result.success){
+
+            document.getElementById("message").innerHTML =
+            `
+            <div class="success">
+                ✅ Bienvenue dans l'aventure La Brique Impro !
+            </div>
+            `;
+
+            this.reset();
+
+        } else {
+
+            document.getElementById("message").innerHTML =
+            `
+            <div class="error">
+                ℹ️ ${result.message}
+            </div>
+            `;
         }
-      );
-
-      const result = await response.json();
-
-      document.getElementById("message").innerHTML =
-        "✅ Merci ! Votre inscription a bien été enregistrée.";
-
-      this.reset();
 
     } catch(error) {
 
-      document.getElementById("message").innerHTML =
-        "❌ Une erreur est survenue.";
+        document.getElementById("message").innerHTML =
+        `
+        <div class="error">
+            ❌ Impossible d'enregistrer l'inscription.
+        </div>
+        `;
 
-      console.error(error);
+        console.error(error);
     }
-
 });
 
 </script>
 
 </body>
-
 </html>
