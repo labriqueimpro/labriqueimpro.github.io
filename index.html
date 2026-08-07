@@ -53,6 +53,122 @@
     }
     </script>
 
+    <!-- Styles pop-up newsletter -->
+    <style>
+        .newsletter-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .newsletter-overlay.active {
+            display: flex;
+        }
+
+        .newsletter-popup {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 30px 30px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
+            animation: popup-apparition .4s ease;
+        }
+
+        @keyframes popup-apparition {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .newsletter-popup img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-popup h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .newsletter-popup p {
+            font-family: 'Montserrat', sans-serif;
+            color: #555;
+            font-size: .95rem;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .newsletter-popup .btn {
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #c74d33, #962d1b);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .newsletter-popup .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(199, 77, 51, .35);
+        }
+
+        .newsletter-popup .later {
+            display: block;
+            margin-top: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: .85rem;
+            color: #999;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .newsletter-popup .later:hover {
+            text-decoration: underline;
+        }
+
+        .newsletter-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            line-height: 1;
+            color: #999;
+            cursor: pointer;
+        }
+
+        .newsletter-close:hover {
+            color: #333;
+        }
+    </style>
+
 </head>
 
 
@@ -391,6 +507,37 @@ Nous contacter
 
 
 
+<!-- Pop-up newsletter -->
+<div class="newsletter-overlay" id="newsletter-overlay">
+
+    <div class="newsletter-popup">
+
+        <button class="newsletter-close" id="newsletter-close" aria-label="Fermer">
+            &times;
+        </button>
+
+        <img src="images/logo.jpeg" alt="Logo La Brique Impro">
+
+        <h3>
+            Entrez dans les coulisses
+        </h3>
+
+        <p>
+            Recevez les prochaines dates de spectacle, nos créations
+            originales et quelques surprises improvisées.
+        </p>
+
+        <a class="btn" href="newsletter.html">
+            Je m'inscris
+        </a>
+
+        <a class="later" id="newsletter-later">
+            Plus tard
+        </a>
+
+    </div>
+
+</div>
 
 
 <footer>
@@ -408,6 +555,49 @@ Nous contacter
 
 <script src="script.js"></script>
 
+<!-- Script pop-up newsletter -->
+<script>
+(function () {
+    var STORAGE_KEY = "labriqueimpro_newsletter_hide_until";
+    var DELAY_MS = 3500;
+    var HIDE_DAYS = 3;
+
+    var overlay = document.getElementById("newsletter-overlay");
+    var closeBtn = document.getElementById("newsletter-close");
+    var laterBtn = document.getElementById("newsletter-later");
+
+    function hidePopup(days) {
+        overlay.classList.remove("active");
+        if (days) {
+            var until = Date.now() + days * 24 * 60 * 60 * 1000;
+            localStorage.setItem(STORAGE_KEY, until);
+        }
+    }
+
+    var hideUntil = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+    var shouldShow = !hideUntil || Date.now() > hideUntil;
+
+    if (shouldShow) {
+        setTimeout(function () {
+            overlay.classList.add("active");
+        }, DELAY_MS);
+    }
+
+    closeBtn.addEventListener("click", function () {
+        hidePopup(HIDE_DAYS);
+    });
+
+    laterBtn.addEventListener("click", function () {
+        hidePopup(1);
+    });
+
+    overlay.addEventListener("click", function (e) {
+        if (e.target === overlay) {
+            hidePopup(HIDE_DAYS);
+        }
+    });
+})();
+</script>
 
 </body>
 
