@@ -1,604 +1,1075 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Brique Impro | Théâtre d'improvisation en Alsace</title>
+<meta name="description" content="La Brique Impro est une compagnie de théâtre d'improvisation en Alsace. Des spectacles uniques créés en direct avec les idées du public.">
+<meta name="keywords" content="théâtre improvisation Alsace, spectacle improvisé, La Brique Impro, Pfastatt">
+<link rel="canonical" href="https://labriqueimpro.github.io/">
+<link rel="icon" href="images/logo.jpeg">
 
-    <title>La Brique Impro | Théâtre d'improvisation en Alsace</title>
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="La Brique Impro">
+<meta property="og:title" content="La Brique Impro | Théâtre d'improvisation">
+<meta property="og:description" content="Chaque spectacle est une histoire unique créée en direct avec le public.">
+<meta property="og:image" content="https://labriqueimpro.github.io/images/logo.jpeg">
+<meta property="og:url" content="https://labriqueimpro.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="La Brique Impro | Théâtre d'improvisation">
+<meta name="twitter:description" content="Chaque spectacle est une histoire unique créée en direct avec le public.">
+<meta name="twitter:image" content="https://labriqueimpro.github.io/images/logo.jpeg">
 
-    <meta name="description"
-        content="La Brique Impro est une compagnie de théâtre d'improvisation en Alsace. Des spectacles uniques créés en direct avec les idées du public.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <meta name="keywords"
-        content="théâtre improvisation Alsace, spectacle improvisé, La Brique Impro, Pfastatt">
+<style>
 
-    <meta name="author" content="La Brique Impro">
+    :root{
+        --brick:        #A63D2B;
+        --brick-light:  #C9613F;
+        --brick-dark:   #7E2D1F;
+        --mortar:       #EDE6DA;
+        --mortar-line:  #DCD0BC;
+        --ink:          #211714;
+        --ink-soft:     #362923;
+        --chalk:        #F2C94C;
+        --paper:        #FBF8F3;
+        --radius: 6px;
+    }
 
-    <!-- Réseaux sociaux -->
-    <meta property="og:title" content="La Brique Impro | Théâtre d'improvisation">
-    <meta property="og:description"
-        content="Chaque spectacle est une histoire unique créée en direct avec le public.">
-    <meta property="og:image"
-        content="https://labriqueimpro.github.io/images/logo.jpeg">
-    <meta property="og:url"
-        content="https://labriqueimpro.github.io/">
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
 
-    <link rel="icon" href="images/logo.jpeg">
+    body{
+        background:var(--mortar);
+        color:var(--ink);
+        font-family:'Montserrat',sans-serif;
+        overflow-x:hidden;
+    }
 
-    <!-- Police -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    a{ color:inherit; }
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap"
-        rel="stylesheet">
+    :focus-visible{
+        outline:3px solid var(--chalk);
+        outline-offset:3px;
+    }
 
-    <link rel="stylesheet" href="style.css">
+    section[id]{ scroll-margin-top:96px; }
 
+    /* ==========================================================
+       NAV
+    ========================================================== */
 
-    <!-- SEO Google -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "PerformingGroup",
-        "name": "La Brique Impro",
-        "description": "Compagnie de théâtre d'improvisation en Alsace",
-        "url": "https://labriqueimpro.github.io/",
-        "logo": "https://labriqueimpro.github.io/images/logo.jpeg",
-        "email": "labriqueimpro@gmail.com",
-        "location": {
-            "@type": "Place",
-            "name": "Pfastatt, Alsace"
+    .site-nav{
+        position:fixed;
+        top:0; left:0;
+        width:100%;
+        z-index:60;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:26px 6%;
+        font-weight:700;
+        font-size:.8rem;
+        letter-spacing:2px;
+        text-transform:uppercase;
+        mix-blend-mode:difference;
+        color:#fff;
+    }
+
+    .site-nav a{ text-decoration:none; }
+
+    .nav-brand{ pointer-events:auto; }
+
+    .nav-links{
+        display:flex;
+        gap:34px;
+        list-style:none;
+        pointer-events:auto;
+    }
+
+    .nav-links a{
+        position:relative;
+        padding-bottom:4px;
+    }
+
+    .nav-links a::after{
+        content:"";
+        position:absolute;
+        left:0; bottom:0;
+        width:0%;
+        height:1px;
+        background:currentColor;
+        transition:width .3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after{ width:100%; }
+
+    @media(max-width:640px){
+        .nav-links{ gap:18px; font-size:.68rem; }
+        .site-nav{ padding:20px 5%; }
+    }
+
+    /* ==========================================================
+       HERO
+    ========================================================== */
+
+    .hero{
+        min-height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        padding:140px 6% 100px;
+        position:relative;
+        perspective:1000px;
+        overflow:hidden;
+        background:
+            repeating-linear-gradient(
+                180deg,
+                var(--mortar) 0px,
+                var(--mortar) 78px,
+                var(--mortar-line) 78px,
+                var(--mortar-line) 80px
+            );
+    }
+
+    .dust{
+        position:absolute;
+        width:5px;
+        height:5px;
+        border-radius:50%;
+        background:radial-gradient(circle,rgba(166,61,43,.55),rgba(166,61,43,0) 70%);
+        pointer-events:none;
+        top:-20px;
+        will-change:transform,opacity;
+    }
+
+    .hero-content{
+        position:relative;
+        z-index:2;
+        transform-style:preserve-3d;
+    }
+
+    .eyebrow{
+        display:inline-block;
+        font-size:.78rem;
+        font-weight:700;
+        letter-spacing:3px;
+        text-transform:uppercase;
+        color:var(--brick);
+        margin-bottom:22px;
+    }
+
+    .brick-title{
+        font-family:'Fraunces',serif;
+        font-weight:900;
+        font-size:clamp(2.6rem,7.2vw,6.4rem);
+        line-height:.98;
+        letter-spacing:-.01em;
+        max-width:1000px;
+    }
+
+    .brick-row{ display:block; overflow:hidden; }
+    .brick-row span{ display:inline-block; will-change:transform; }
+
+    .hero-sub{
+        margin-top:34px;
+        max-width:480px;
+        font-size:1.15rem;
+        line-height:1.7;
+        opacity:.8;
+    }
+
+    .cta{
+        margin-top:44px;
+        display:inline-flex;
+        align-items:center;
+        gap:12px;
+        width:max-content;
+        padding:16px 30px;
+        background:var(--ink);
+        color:var(--paper);
+        text-decoration:none;
+        font-weight:600;
+        font-size:.95rem;
+        border-radius:50px;
+        transition:background .35s;
+    }
+
+    .cta:hover{ background:var(--brick); }
+    .cta svg{ transition:transform .3s; }
+    .cta:hover svg{ transform:translateY(3px); }
+
+    /* ==========================================================
+       WALL SECTION — SPECTACLES
+    ========================================================== */
+
+    .wall-section{
+        padding:140px 6% 120px;
+        background:var(--paper);
+        border-top:1px solid var(--mortar-line);
+    }
+
+    .wall-header{
+        max-width:640px;
+        margin:0 auto 70px;
+        text-align:center;
+    }
+
+    .wall-header .eyebrow{ display:block; }
+
+    .wall-header h2{
+        font-family:'Fraunces',serif;
+        font-weight:700;
+        font-size:clamp(2rem,4vw,3rem);
+        margin-top:10px;
+    }
+
+    .wall{
+        max-width:1200px;
+        margin:0 auto;
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        gap:26px;
+    }
+
+    .brick-slot{
+        position:relative;
+        aspect-ratio:3/3.6;
+        perspective:1400px;
+        opacity:0;
+        transform:translateY(70px);
+        transition:transform .5s cubic-bezier(.2,.8,.2,1), opacity .5s;
+    }
+
+    .brick-slot:nth-child(2),
+    .brick-slot:nth-child(4){ margin-top:34px; }
+
+    .brick-slot.is-in{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+    .cavity{
+        position:absolute;
+        inset:0;
+        border-radius:var(--radius);
+        background:
+            radial-gradient(circle at 30% 20%, rgba(0,0,0,0) 0%, rgba(0,0,0,.4) 100%),
+            var(--ink);
+        box-shadow:inset 0 10px 30px rgba(0,0,0,.6);
+        opacity:0;
+        transition:opacity .5s;
+    }
+
+    .cavity::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+        background-size:9px 9px;
+        opacity:.5;
+    }
+
+    .brick-slot:hover .cavity,
+    .brick-slot:focus-within .cavity{ opacity:1; }
+
+    .brick{
+        position:absolute;
+        inset:0;
+        border-radius:var(--radius);
+        padding:26px;
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-end;
+        color:var(--paper);
+        text-decoration:none;
+        overflow:hidden;
+        transform-style:preserve-3d;
+        transform-origin:0% 50%;
+        transition:
+            transform .55s cubic-bezier(.22,.85,.3,1.15),
+            box-shadow .55s cubic-bezier(.22,.85,.3,1.15);
+    }
+
+    .brick-slot:nth-child(1) .brick,
+    .brick-slot:nth-child(3) .brick{ background:linear-gradient(160deg,var(--brick),var(--brick-dark)); }
+    .brick-slot:nth-child(2) .brick,
+    .brick-slot:nth-child(4) .brick{ background:linear-gradient(160deg,var(--brick-light),var(--brick)); }
+
+    .brick::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:
+            repeating-linear-gradient(
+                0deg,
+                rgba(0,0,0,0) 0px,
+                rgba(0,0,0,0) 30px,
+                rgba(0,0,0,.10) 30px,
+                rgba(0,0,0,.10) 32px
+            );
+        pointer-events:none;
+    }
+
+    .brick-slot:hover .brick,
+    .brick-slot:focus-within .brick{
+        transform:rotateY(-32deg) translateX(2px);
+        box-shadow:-26px 20px 45px rgba(33,23,20,.4);
+    }
+
+    .brick-num{
+        position:relative;
+        font-family:'Fraunces',serif;
+        font-size:.85rem;
+        opacity:.7;
+        margin-bottom:16px;
+    }
+
+    .brick-name{
+        position:relative;
+        font-family:'Fraunces',serif;
+        font-weight:700;
+        font-size:1.5rem;
+        line-height:1.15;
+        margin-bottom:10px;
+    }
+
+    .brick-tag{
+        position:relative;
+        font-size:.88rem;
+        line-height:1.5;
+        max-height:0;
+        opacity:0;
+        overflow:hidden;
+        transition:max-height .4s ease, opacity .35s ease .05s;
+    }
+
+    .brick-slot:hover .brick-tag,
+    .brick-slot:focus-within .brick-tag{
+        max-height:100px;
+        opacity:.92;
+    }
+
+    .brick-arrow{
+        position:relative;
+        margin-top:16px;
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        font-size:.8rem;
+        font-weight:600;
+        text-transform:uppercase;
+        letter-spacing:1px;
+        opacity:0;
+        transform:translateX(-8px);
+        transition:opacity .35s ease .1s, transform .35s ease .1s;
+    }
+
+    .brick-slot:hover .brick-arrow,
+    .brick-slot:focus-within .brick-arrow{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+    @media(max-width:900px){
+        .wall{ grid-template-columns:repeat(2,1fr); }
+        .brick-slot:nth-child(2){ margin-top:0; }
+        .brick-slot:nth-child(3),
+        .brick-slot:nth-child(4){ margin-top:20px; }
+    }
+
+    @media(max-width:600px){
+        .wall{ grid-template-columns:1fr; gap:18px; }
+        .brick-slot{ margin-top:0 !important; aspect-ratio:auto; min-height:220px; }
+        .brick-tag, .brick-arrow{ max-height:100px; opacity:.92; transform:none; }
+        .brick-slot:hover .brick,
+        .brick-slot:focus-within .brick{ transform:none; }
+    }
+
+    /* ==========================================================
+       PUBLIC WALL
+    ========================================================== */
+
+    .public-wall{
+        padding:120px 6%;
+        background:var(--ink);
+        color:var(--paper);
+        text-align:center;
+    }
+
+    .public-wall-inner{ max-width:640px; margin:0 auto; }
+    .public-wall .eyebrow{ color:var(--chalk); }
+
+    .public-wall h2{
+        font-family:'Fraunces',serif;
+        font-weight:700;
+        font-size:clamp(1.8rem,3.6vw,2.6rem);
+        margin-top:10px;
+    }
+
+    .public-wall p{ margin-top:18px; opacity:.65; line-height:1.7; }
+
+    .brick-form{
+        margin-top:40px;
+        display:flex;
+        gap:12px;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .brick-form input{
+        flex:1;
+        min-width:220px;
+        max-width:340px;
+        background:transparent;
+        border:none;
+        border-bottom:2px solid rgba(251,248,243,.3);
+        padding:12px 4px;
+        font-family:'Montserrat',sans-serif;
+        font-size:1rem;
+        color:var(--paper);
+        transition:border-color .3s;
+    }
+
+    .brick-form input::placeholder{ color:rgba(251,248,243,.4); }
+    .brick-form input:focus{ outline:none; border-color:var(--chalk); }
+
+    .brick-form button{
+        padding:12px 26px;
+        border:none;
+        border-radius:50px;
+        background:var(--chalk);
+        color:var(--ink);
+        font-weight:700;
+        font-size:.9rem;
+        cursor:pointer;
+        transition:transform .3s, background .3s;
+    }
+
+    .brick-form button:hover{
+        background:var(--brick-light);
+        color:var(--paper);
+        transform:translateY(-3px);
+    }
+
+    .public-bricks{
+        margin-top:50px;
+        display:flex;
+        flex-wrap:wrap;
+        gap:12px;
+        justify-content:center;
+        min-height:1px;
+    }
+
+    .public-brick{
+        display:inline-block;
+        padding:10px 18px;
+        background:var(--chalk);
+        color:var(--ink);
+        font-weight:600;
+        font-size:.9rem;
+        border-radius:4px;
+        opacity:0;
+        box-shadow:0 8px 18px rgba(0,0,0,.35);
+    }
+
+    .public-note{
+        margin-top:26px;
+        font-size:.76rem;
+        opacity:.4;
+        letter-spacing:.3px;
+    }
+
+    /* ==========================================================
+       ASSOCIATION
+    ========================================================== */
+
+    .association{
+        padding:140px 6%;
+        background:var(--mortar);
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:80px;
+        align-items:center;
+    }
+
+    .association-text h2{
+        font-family:'Fraunces',serif;
+        font-weight:700;
+        font-size:clamp(2rem,3.6vw,2.8rem);
+        margin-top:10px;
+        margin-bottom:26px;
+    }
+
+    .association-text p{
+        font-size:1.05rem;
+        line-height:1.8;
+        max-width:520px;
+        margin-bottom:18px;
+        opacity:.85;
+    }
+
+    .association-text p:last-of-type{
+        font-family:'Fraunces',serif;
+        font-style:italic;
+        font-weight:600;
+        color:var(--brick);
+        opacity:1;
+        font-size:1.2rem;
+    }
+
+    .assoc-bricks{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:10px;
+        aspect-ratio:1/.85;
+    }
+
+    .assoc-bricks div{
+        border-radius:var(--radius);
+        opacity:0;
+        transform:scale(.85);
+        transition:opacity .5s, transform .5s;
+    }
+
+    .assoc-bricks.is-in div{ opacity:1; transform:scale(1); }
+
+    .assoc-bricks div:nth-child(3n+1){ background:linear-gradient(160deg,var(--brick-light),var(--brick)); }
+    .assoc-bricks div:nth-child(3n+2){ background:linear-gradient(160deg,var(--brick),var(--brick-dark)); }
+    .assoc-bricks div:nth-child(3n){ background:linear-gradient(160deg,var(--brick-dark),var(--ink-soft)); }
+    .assoc-bricks div:nth-child(2){ margin-top:28px; }
+    .assoc-bricks div:nth-child(5){ margin-top:-20px; }
+    .assoc-bricks div:nth-child(8){ margin-top:24px; }
+
+    @media(max-width:820px){
+        .association{ grid-template-columns:1fr; gap:50px; padding:100px 6%; }
+        .assoc-bricks{ max-width:420px; margin:0 auto; }
+    }
+
+    /* ==========================================================
+       CONTACT
+    ========================================================== */
+
+    .contact{
+        padding:140px 6%;
+        background:var(--ink);
+        color:var(--paper);
+        text-align:center;
+    }
+
+    .contact-inner{ max-width:560px; margin:0 auto; }
+    .contact .eyebrow{ color:var(--chalk); }
+
+    .contact h2{
+        font-family:'Fraunces',serif;
+        font-weight:700;
+        font-size:clamp(2rem,3.6vw,2.8rem);
+        margin-top:10px;
+    }
+
+    .contact-rows{
+        margin-top:40px;
+        display:flex;
+        flex-direction:column;
+        gap:16px;
+        font-size:1.05rem;
+    }
+
+    .contact-rows a{ text-decoration:underline; text-underline-offset:4px; }
+    .contact-rows a:hover{ color:var(--chalk); }
+
+    .contact p.social{ margin-top:24px; opacity:.6; }
+
+    .contact .cta{ margin-top:40px; background:var(--chalk); color:var(--ink); }
+    .contact .cta:hover{ background:var(--brick); color:var(--paper); }
+
+    /* ==========================================================
+       NEWSLETTER MODAL
+    ========================================================== */
+
+    .newsletter-overlay{
+        position:fixed;
+        inset:0;
+        background:rgba(33,23,20,.72);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:24px;
+        z-index:100;
+        opacity:0;
+        pointer-events:none;
+        transition:opacity .4s ease;
+    }
+
+    .newsletter-overlay.is-open{ opacity:1; pointer-events:auto; }
+
+    .newsletter-modal{
+        position:relative;
+        background:var(--paper);
+        color:var(--ink);
+        max-width:440px;
+        width:100%;
+        padding:44px 36px;
+        border-radius:10px;
+        text-align:center;
+        transform:translateY(20px) scale(.97);
+        transition:transform .4s ease;
+    }
+
+    .newsletter-overlay.is-open .newsletter-modal{ transform:translateY(0) scale(1); }
+
+    .newsletter-modal img{
+        width:56px;
+        height:56px;
+        border-radius:50%;
+        object-fit:cover;
+        margin:0 auto 18px;
+    }
+
+    .newsletter-modal h3{
+        font-family:'Fraunces',serif;
+        font-weight:700;
+        font-size:1.5rem;
+        margin-bottom:14px;
+    }
+
+    .newsletter-modal p{ line-height:1.7; opacity:.8; margin-bottom:26px; }
+
+    .newsletter-actions{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+        align-items:center;
+    }
+
+    .newsletter-actions .cta{ margin-top:0; }
+
+    .newsletter-actions button{
+        background:none;
+        border:none;
+        color:var(--ink-soft);
+        opacity:.55;
+        font-size:.85rem;
+        cursor:pointer;
+        text-decoration:underline;
+    }
+
+    .newsletter-close{
+        position:absolute;
+        top:14px;
+        right:16px;
+        background:none;
+        border:none;
+        font-size:1.3rem;
+        line-height:1;
+        cursor:pointer;
+        color:var(--ink);
+        opacity:.5;
+    }
+
+    .newsletter-close:hover{ opacity:1; }
+
+    /* ==========================================================
+       FOOTER
+    ========================================================== */
+
+    .site-footer{
+        padding:40px 6%;
+        background:var(--ink-soft);
+        color:var(--paper);
+        text-align:center;
+        font-size:.85rem;
+        opacity:.7;
+    }
+
+    @media(prefers-reduced-motion:reduce){
+        .brick, .brick-row span, .brick-slot, .cavity, .dust, .assoc-bricks div, .newsletter-modal, .newsletter-overlay{
+            transition:none !important;
+            animation:none !important;
         }
     }
-    </script>
 
-    <!-- Styles pop-up newsletter -->
-    <style>
-        .newsletter-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .6);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            padding: 20px;
-        }
-
-        .newsletter-overlay.active {
-            display: flex;
-        }
-
-        .newsletter-popup {
-            position: relative;
-            width: 100%;
-            max-width: 420px;
-            background: #fff;
-            border-radius: 20px;
-            padding: 40px 30px 30px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
-            animation: popup-apparition .4s ease;
-        }
-
-        @keyframes popup-apparition {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(.97);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .newsletter-popup img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-
-        .newsletter-popup h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: #222;
-        }
-
-        .newsletter-popup p {
-            font-family: 'Montserrat', sans-serif;
-            color: #555;
-            font-size: .95rem;
-            margin-bottom: 25px;
-            line-height: 1.4;
-        }
-
-        .newsletter-popup .btn {
-            display: inline-block;
-            width: 100%;
-            box-sizing: border-box;
-            background: linear-gradient(135deg, #c74d33, #962d1b);
-            color: #fff;
-            border: none;
-            padding: 15px;
-            border-radius: 14px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: .3s;
-        }
-
-        .newsletter-popup .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(199, 77, 51, .35);
-        }
-
-        .newsletter-popup .later {
-            display: block;
-            margin-top: 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: .85rem;
-            color: #999;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .newsletter-popup .later:hover {
-            text-decoration: underline;
-        }
-
-        .newsletter-close {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            background: none;
-            border: none;
-            font-size: 1.4rem;
-            line-height: 1;
-            color: #999;
-            cursor: pointer;
-        }
-
-        .newsletter-close:hover {
-            color: #333;
-        }
-    </style>
-
+</style>
 </head>
-
 
 <body>
 
-
-<header>
-
-
-<nav class="navbar">
-
-<div class="logo">
-
-<a href="#" aria-label="Accueil La Brique Impro">
-
-<img src="images/logo.jpeg"
-alt="Logo La Brique Impro"
-width="100"
-height="100">
-
-</a>
-
-<span>
-LA BRIQUE IMPRO
-</span>
-
-</div>
-
-
-<button class="menu-toggle" aria-label="Menu">
-☰
-</button>
-
-
-<ul class="menu">
-
-<li>
-<a href="#spectacles">
-Spectacles
-</a>
-</li>
-
-<li>
-<a href="#association">
-Association
-</a>
-</li>
-
-<li>
-<a href="#contact">
-Contact
-</a>
-</li>
-
-</ul>
-
-
+<nav class="site-nav">
+    <a class="nav-brand" href="#hero">La Brique Impro</a>
+    <ul class="nav-links">
+        <li><a href="#spectacles">Spectacles</a></li>
+        <li><a href="#association">Association</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
 </nav>
 
+<section class="hero" id="hero">
+    <div class="hero-content">
+        <span class="eyebrow">Théâtre d'improvisation — Alsace</span>
+        <h1 class="brick-title">
+            <span class="brick-row"><span>L'histoire</span></span>
+            <span class="brick-row"><span>qui n'existe</span></span>
+            <span class="brick-row"><span>pas encore.</span></span>
+        </h1>
+        <p class="hero-sub">
+            Chaque spectacle est créé en direct grâce aux idées du public.
+            Une soirée unique, drôle et totalement improvisée.
+        </p>
+        <a href="#spectacles" class="cta">
+            Découvrir nos spectacles
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2V14M8 14L3 9M8 14L13 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </div>
+</section>
 
+<section class="wall-section" id="spectacles">
 
-<section class="hero">
+    <div class="wall-header">
+        <span class="eyebrow">Nos spectacles</span>
+        <h2>Quatre portes dans le même mur.</h2>
+    </div>
 
+    <div class="wall" id="wall">
 
-<div class="hero-content">
+        <div class="brick-slot">
+            <div class="cavity"></div>
+            <a class="brick" href="spectacles/histoire.html">
+                <span class="brick-num">01</span>
+                <span class="brick-name">L'Histoire qui n'existe pas encore</span>
+                <span class="brick-tag">Le public invente, les comédiens racontent. Rien n'est écrit à l'avance.</span>
+                <span class="brick-arrow">Découvrir →</span>
+            </a>
+        </div>
 
+        <div class="brick-slot">
+            <div class="cavity"></div>
+            <a class="brick" href="spectacles/banjo-bill.html">
+                <span class="brick-num">02</span>
+                <span class="brick-name">Banjo Bill</span>
+                <span class="brick-tag">Un vieil homme, un banjo, et toute une vie qui ressurgit.</span>
+                <span class="brick-arrow">Découvrir →</span>
+            </a>
+        </div>
 
-<h1>
-L'histoire qui n'existe pas encore.
-</h1>
+        <div class="brick-slot">
+            <div class="cavity"></div>
+            <a class="brick" href="spectacles/le-perron.html">
+                <span class="brick-num">03</span>
+                <span class="brick-name">Le Perron</span>
+                <span class="brick-tag">Il suffit parfois d'un pas sur un perron pour changer toute une existence.</span>
+                <span class="brick-arrow">Découvrir →</span>
+            </a>
+        </div>
 
+        <div class="brick-slot">
+            <div class="cavity"></div>
+            <a class="brick" href="spectacles/a-rebours.html">
+                <span class="brick-num">04</span>
+                <span class="brick-name">À Rebours</span>
+                <span class="brick-tag">Une histoire en trois temps, jouée à l'envers, du dénouement vers l'origine.</span>
+                <span class="brick-arrow">Découvrir →</span>
+            </a>
+        </div>
 
-<p>
-Chaque spectacle est créé en direct grâce aux idées du public.
-Une soirée unique, drôle et totalement improvisée.
-</p>
-
-
-<a href="#spectacles"
-class="btn">
-Découvrir nos spectacles
-</a>
-
-
-</div>
-
+    </div>
 
 </section>
 
-
-</header>
-
-
-
-
-<main>
-
-
-
-<section id="spectacles">
-
-
-<h2>
-Nos spectacles
-</h2>
-
-
-
-<div class="cards">
-
-
-
-<article class="card">
-
-
-<img src="images/histoire.jpg"
-alt="Spectacle L'Histoire qui n'existe pas encore"
-loading="lazy">
-
-
-<div class="card-info">
-
-
-<h3>
-L'Histoire qui n'existe pas encore
-</h3>
-
-
-<p>
-Le public choisit les personnages, les lieux et les rebondissements.
-</p>
-
-<a class="btn"
-href="spectacles/histoire.html">
-Découvrir le spectacle
-</a>
-
-</div>
-
-
-</article>
-
-
-
-
-
-<article class="card">
-
-
-<img src="images/banjo-bill.jpg"
-alt="Spectacle Banjo Bill"
-loading="lazy">
-
-
-<div class="card-info">
-
-
-<h3>
-Banjo Bill
-</h3>
-
-
-<p>
-Un spectacle entre western et mémoire où la légende se réinvente chaque soir.
-</p>
-
-<a class="btn"
-href="spectacles/banjo-bill.html">
-Découvrir le spectacle
-</a>
-
-</div>
-
-
-</article>
-
-
-
-
-
-<article class="card">
-
-
-<img src="images/le-perron.jpg"
-alt="Spectacle Le Perron"
-loading="lazy">
-
-
-<div class="card-info">
-
-
-<h3>
-Le Perron
-</h3>
-
-
-<p>
-Il suffit parfois d'un pas pour changer toute une histoire.
-</p>
-
-<a class="btn"
-href="spectacles/le-perron.html">
-Découvrir le spectacle
-</a>
-    
-</div>
-
-
-</article>
-
-    
-<article class="card">
-
-<img src="images/a-rebours.jpg"
-alt="À Rebours"
-loading="lazy">
-
-<div class="card-info">
-
-<h3>
-À Rebours
-</h3>
-
-<p>
-Un spectacle où le temps devient un terrain d'improvisation.
-</p>
-
-<a class="btn"
-href="spectacles/a-rebours.html">
-Découvrir le spectacle
-</a>
-
-</div>
-
-</article>
-
-
-</div>
-
-
+<section class="public-wall">
+    <div class="public-wall-inner">
+        <span class="eyebrow">Le public construit aussi</span>
+        <h2>Posez votre brique.</h2>
+        <p>
+            Un mot, un lieu, une envie de spectacle —
+            comme sur scène, on part de ce que vous proposez.
+        </p>
+
+        <form class="brick-form" id="brick-form">
+            <input
+                type="text"
+                id="brick-input"
+                maxlength="28"
+                placeholder="ex. un phare, la jalousie, 1987…"
+                autocomplete="off"
+                required
+            >
+            <button type="submit">Poser la brique</button>
+        </form>
+
+        <div class="public-bricks" id="public-bricks" aria-live="polite"></div>
+        <p class="public-note">Un mur éphémère : vos briques restent visibles le temps de votre visite.</p>
+    </div>
 </section>
 
-
-
-
-
-
-<section id="association"
-class="dark">
-
-
-<div class="container">
-
-
-<h2>
-Qui sommes-nous ?
-</h2>
-
-
-<p>
-La Brique Impro est une compagnie de théâtre d'improvisation basée en Alsace.
-</p>
-
-
-<p>
-Nous créons des histoires inédites, partageons des émotions et proposons au public une expérience différente à chaque représentation.
-</p>
-
-
-<p>
-Chaque soirée est une création originale.
-</p>
-
-
-</div>
-
-
+<section class="association" id="association">
+    <div class="association-text">
+        <span class="eyebrow">Qui sommes-nous ?</span>
+        <h2>Une compagnie qui construit ses histoires en direct.</h2>
+        <p>
+            La Brique Impro est une compagnie de théâtre d'improvisation
+            basée en Alsace.
+        </p>
+        <p>
+            Nous créons des histoires inédites, partageons des émotions
+            et proposons au public une expérience différente à chaque
+            représentation.
+        </p>
+        <p>Chaque soirée est une création originale.</p>
+    </div>
+    <div class="assoc-bricks" id="assoc-bricks">
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+    </div>
 </section>
 
-
-
-
-
-
-<section id="contact">
-
-
-<h2>
-Contact
-</h2>
-
-
-
-<div class="contact-card">
-
-
-<h3>
-La Brique Impro
-</h3>
-
-
-<p>
-📍 Pfastatt (68)
-</p>
-
-
-<p>
-📧 
-<a href="mailto:labriqueimpro@gmail.com">
-labriqueimpro@gmail.com
-</a>
-</p>
-
-
-<p>
-Suivez-nous sur Facebook et Instagram.
-</p>
-
-
-
-<a class="btn"
-href="mailto:labriqueimpro@gmail.com">
-Nous contacter
-</a>
-
-
-</div>
-
-
+<section class="contact" id="contact">
+    <div class="contact-inner">
+        <span class="eyebrow">Nous écrire</span>
+        <h2>Faisons vivre une soirée ensemble.</h2>
+        <div class="contact-rows">
+            <span>📍 Pfastatt (68)</span>
+            <a href="mailto:labriqueimpro@gmail.com">📧 labriqueimpro@gmail.com</a>
+        </div>
+        <p class="social">Suivez-nous sur Facebook et Instagram.</p>
+        <a href="mailto:labriqueimpro@gmail.com" class="cta">
+            Nous contacter
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2V14M8 14L3 9M8 14L13 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </div>
 </section>
 
+<footer class="site-footer">
+    © 2026 La Brique Impro — Tous droits réservés.
+</footer>
 
-
-
-</main>
-
-
-
-<!-- Pop-up newsletter -->
 <div class="newsletter-overlay" id="newsletter-overlay">
-
-    <div class="newsletter-popup">
-
-        <button class="newsletter-close" id="newsletter-close" aria-label="Fermer">
-            &times;
-        </button>
-
+    <div class="newsletter-modal">
+        <button class="newsletter-close" id="newsletter-close" aria-label="Fermer">×</button>
         <img src="images/logo.jpeg" alt="Logo La Brique Impro">
-
-        <h3>
-            Entrez dans les coulisses
-        </h3>
-
+        <h3>Entrez dans les coulisses</h3>
         <p>
             Recevez les prochaines dates de spectacle, nos créations
             originales et quelques surprises improvisées.
         </p>
-
-        <a class="btn" href="newsletter.html">
-            Je m'inscris
-        </a>
-
-        <a class="later" id="newsletter-later">
-            Plus tard
-        </a>
-
+        <div class="newsletter-actions">
+            <a href="newsletter.html" class="cta">Je m'inscris</a>
+            <button id="newsletter-later">Plus tard</button>
+        </div>
     </div>
-
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-<footer>
-
-
-<p>
-© 2026 La Brique Impro — Tous droits réservés.
-</p>
-
-
-</footer>
-
-
-
-
-<script src="script.js"></script>
-
-<!-- Script pop-up newsletter -->
 <script>
-(function () {
-    var STORAGE_KEY = "labriqueimpro_newsletter_hide_until";
-    var DELAY_MS = 3500;
-    var HIDE_DAYS = 3;
 
-    var overlay = document.getElementById("newsletter-overlay");
-    var closeBtn = document.getElementById("newsletter-close");
-    var laterBtn = document.getElementById("newsletter-later");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const hasGsap = !!window.gsap;
 
-    function hidePopup(days) {
-        overlay.classList.remove("active");
-        if (days) {
-            var until = Date.now() + days * 24 * 60 * 60 * 1000;
-            localStorage.setItem(STORAGE_KEY, until);
-        }
+    function spawnDust(el, scaleUp){
+        if(!hasGsap || reduceMotion) return;
+
+        const rect = el.getBoundingClientRect();
+        const puff = document.createElement("div");
+
+        puff.style.position = "fixed";
+        puff.style.left = (rect.left + rect.width / 2) + "px";
+        puff.style.top = (rect.bottom - 4) + "px";
+        puff.style.width = "44px";
+        puff.style.height = "44px";
+        puff.style.marginLeft = "-22px";
+        puff.style.marginTop = "-22px";
+        puff.style.borderRadius = "50%";
+        puff.style.pointerEvents = "none";
+        puff.style.zIndex = "80";
+        puff.style.background = "radial-gradient(circle, rgba(237,230,218,.85), rgba(237,230,218,0) 70%)";
+
+        document.body.appendChild(puff);
+
+        gsap.fromTo(
+            puff,
+            { scale: 0, opacity: .6 },
+            { scale: scaleUp || 1.8, opacity: 0, duration: .55, ease: "power2.out", onComplete: () => puff.remove() }
+        );
     }
 
-    var hideUntil = parseInt(localStorage.getItem(STORAGE_KEY), 10);
-    var shouldShow = !hideUntil || Date.now() > hideUntil;
+    if (hasGsap) {
 
-    if (shouldShow) {
-        setTimeout(function () {
-            overlay.classList.add("active");
-        }, DELAY_MS);
+        gsap.registerPlugin(ScrollTrigger);
+
+        if (!reduceMotion) {
+
+            gsap.set(".brick-row span", { y: "110%", rotate: 2 });
+
+            gsap.to(".brick-row span", {
+                y: "0%", rotate: 0, duration: 0.9, ease: "back.out(1.4)", stagger: 0.14, delay: 0.2
+            });
+
+            gsap.from(".hero-sub, .cta", {
+                y: 20, opacity: 0, duration: 0.8, ease: "power2.out", stagger: 0.12, delay: 0.85
+            });
+
+            const heroEl = document.getElementById("hero");
+            const heroContent = document.querySelector(".hero-content");
+
+            const rotX = gsap.quickTo(heroContent, "rotateX", { duration: .6, ease: "power3" });
+            const rotY = gsap.quickTo(heroContent, "rotateY", { duration: .6, ease: "power3" });
+
+            heroEl.addEventListener("mousemove", (e) => {
+                const r = heroEl.getBoundingClientRect();
+                const px = (e.clientX - r.left) / r.width - .5;
+                const py = (e.clientY - r.top) / r.height - .5;
+                rotY(px * 5);
+                rotX(-py * 5);
+            });
+
+            heroEl.addEventListener("mouseleave", () => { rotX(0); rotY(0); });
+
+            for (let i = 0; i < 10; i++) {
+                const d = document.createElement("div");
+                d.className = "dust";
+                d.style.left = gsap.utils.random(4, 96) + "%";
+                heroEl.appendChild(d);
+
+                gsap.fromTo(
+                    d,
+                    { y: -20, opacity: 0 },
+                    {
+                        y: window.innerHeight,
+                        opacity: gsap.utils.random(.15, .4),
+                        duration: gsap.utils.random(9, 16),
+                        repeat: -1,
+                        delay: gsap.utils.random(0, 10),
+                        ease: "none",
+                        onRepeat: () => { d.style.left = gsap.utils.random(4, 96) + "%"; }
+                    }
+                );
+            }
+
+            document.querySelectorAll(".cta").forEach((cta) => {
+                const ctaX = gsap.quickTo(cta, "x", { duration: .4, ease: "power3" });
+                const ctaY = gsap.quickTo(cta, "y", { duration: .4, ease: "power3" });
+
+                cta.addEventListener("mousemove", (e) => {
+                    const r = cta.getBoundingClientRect();
+                    ctaX((e.clientX - r.left - r.width / 2) * .35);
+                    ctaY((e.clientY - r.top - r.height / 2) * .5);
+                });
+
+                cta.addEventListener("mouseleave", () => { ctaX(0); ctaY(0); });
+            });
+
+        } else {
+            gsap.set(".brick-row span, .hero-sub, .cta", { y: 0, opacity: 1, rotate: 0 });
+        }
+
+        const slots = gsap.utils.toArray(".brick-slot");
+
+        if (reduceMotion) {
+            slots.forEach(s => s.classList.add("is-in"));
+        } else {
+            ScrollTrigger.create({
+                trigger: "#wall",
+                start: "top 82%",
+                once: true,
+                onEnter: () => {
+                    slots.forEach((slot, i) => {
+                        gsap.delayedCall(i * 0.14, () => {
+                            slot.classList.add("is-in");
+                            spawnDust(slot, 1.4);
+                        });
+                    });
+                }
+            });
+        }
+
+        const assocBricks = document.getElementById("assoc-bricks");
+
+        if (reduceMotion) {
+            assocBricks.classList.add("is-in");
+        } else {
+            ScrollTrigger.create({
+                trigger: assocBricks,
+                start: "top 85%",
+                once: true,
+                onEnter: () => assocBricks.classList.add("is-in")
+            });
+        }
+
+    } else {
+        document.querySelectorAll(".brick-slot").forEach(s => s.classList.add("is-in"));
+        document.querySelectorAll(".brick-row span").forEach(s => { s.style.transform = "none"; });
+        document.getElementById("assoc-bricks").classList.add("is-in");
     }
 
-    closeBtn.addEventListener("click", function () {
-        hidePopup(HIDE_DAYS);
-    });
+    const brickForm = document.getElementById("brick-form");
+    const brickInput = document.getElementById("brick-input");
+    const publicBricks = document.getElementById("public-bricks");
 
-    laterBtn.addEventListener("click", function () {
-        hidePopup(1);
-    });
+    brickForm.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-    overlay.addEventListener("click", function (e) {
-        if (e.target === overlay) {
-            hidePopup(HIDE_DAYS);
+        const value = brickInput.value.trim();
+        if (!value) return;
+
+        const el = document.createElement("span");
+        el.className = "public-brick";
+        el.textContent = value;
+
+        const rot = hasGsap ? gsap.utils.random(-6, 6) : 0;
+
+        publicBricks.appendChild(el);
+
+        if (hasGsap && !reduceMotion) {
+            gsap.fromTo(
+                el,
+                { y: 36, opacity: 0, scale: .7, rotate: 0 },
+                {
+                    y: 0, opacity: 1, scale: 1, rotate: rot, duration: .6,
+                    ease: "back.out(2.2)", onComplete: () => spawnDust(el, 1.1)
+                }
+            );
+        } else {
+            el.style.opacity = 1;
+            el.style.transform = `rotate(${rot}deg)`;
         }
+
+        brickInput.value = "";
+        brickInput.focus();
     });
-})();
+
+    /* ----------------------------------------------------------
+       Newsletter : apparaît une fois par session, après un délai
+    ---------------------------------------------------------- */
+
+    const overlay = document.getElementById("newsletter-overlay");
+    const closeBtn = document.getElementById("newsletter-close");
+    const laterBtn = document.getElementById("newsletter-later");
+
+    function closeNewsletter(){
+        overlay.classList.remove("is-open");
+        sessionStorage.setItem("bi-newsletter-seen", "1");
+    }
+
+    if (!sessionStorage.getItem("bi-newsletter-seen")) {
+        setTimeout(() => overlay.classList.add("is-open"), 6000);
+    }
+
+    closeBtn.addEventListener("click", closeNewsletter);
+    laterBtn.addEventListener("click", closeNewsletter);
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeNewsletter(); });
+
 </script>
 
 </body>
-
 </html>
