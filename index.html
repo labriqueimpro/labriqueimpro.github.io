@@ -176,12 +176,10 @@
         width:100%;
         height:100%;
         object-fit:cover;
-        opacity:0;
+        opacity:.34;
         transition:opacity 1.2s ease;
         z-index:0;
     }
-
-    .hero-video.is-loaded{ opacity:.34; }
 
     .hero-video-veil{
         position:absolute;
@@ -314,12 +312,23 @@
         inset:0;
         border-radius:var(--radius);
         background:
-            radial-gradient(circle at 30% 20%, rgba(0,0,0,0) 0%, rgba(0,0,0,.4) 100%),
+            linear-gradient(0deg, rgba(33,23,20,.8) 0%, rgba(33,23,20,.25) 100%),
             var(--ink);
+        background-size:cover;
+        background-position:center;
         box-shadow:inset 0 10px 30px rgba(0,0,0,.6);
         opacity:0;
         transition:opacity .5s;
     }
+
+    /* The spectacle photo lives behind the brick, in the cavity — it only
+       becomes visible once the brick swings open on hover/focus. Drop
+       files at images/<slug>.jpg — if a file is missing this simply
+       shows the dark cavity underneath, no broken image. */
+    .brick-slot:nth-child(1) .cavity{ background-image:linear-gradient(0deg, rgba(33,23,20,.8) 0%, rgba(33,23,20,.2) 100%), url('images/histoire.jpg'); }
+    .brick-slot:nth-child(2) .cavity{ background-image:linear-gradient(0deg, rgba(33,23,20,.8) 0%, rgba(33,23,20,.2) 100%), url('images/banjo-bill.jpg'); }
+    .brick-slot:nth-child(3) .cavity{ background-image:linear-gradient(0deg, rgba(33,23,20,.8) 0%, rgba(33,23,20,.2) 100%), url('images/le-perron.jpg'); }
+    .brick-slot:nth-child(4) .cavity{ background-image:linear-gradient(0deg, rgba(33,23,20,.8) 0%, rgba(33,23,20,.2) 100%), url('images/a-rebours.jpg'); }
 
     .cavity::after{
         content:"";
@@ -353,24 +362,9 @@
             box-shadow .55s cubic-bezier(.22,.85,.3,1.15);
     }
 
-    /* Photo layer: a real spectacle photo, tinted with the brick palette so
-       the wall still reads as one material even once photos are added.
-       Drop files at images/spectacles/<slug>.jpg — if a file is missing the
-       gradient underneath simply shows through. */
-    .brick-photo{
-        position:absolute;
-        inset:0;
-        background-size:cover;
-        background-position:center;
-        z-index:0;
-    }
-
-    .brick-slot:nth-child(1) .brick-photo{ background-image:linear-gradient(160deg, rgba(166,61,43,.72), rgba(126,45,31,.86)), url('images/histoire.jpg'); }
-    .brick-slot:nth-child(2) .brick-photo{ background-image:linear-gradient(160deg, rgba(201,97,63,.72), rgba(166,61,43,.86)), url('images/banjo-bill.jpg'); }
-    .brick-slot:nth-child(3) .brick-photo{ background-image:linear-gradient(160deg, rgba(166,61,43,.72), rgba(126,45,31,.86)), url('images/le-perron.jpg'); }
-    .brick-slot:nth-child(4) .brick-photo{ background-image:linear-gradient(160deg, rgba(201,97,63,.72), rgba(166,61,43,.86)), url('images/a-rebours.jpg'); }
-
-    /* fallback gradient (visible while no photo file exists yet) */
+    /* The brick stays a solid, uniform brick color at all times — the
+       photo lives in the .cavity behind it (see above) and only shows
+       once the brick rotates open. */
     .brick-slot:nth-child(1) .brick,
     .brick-slot:nth-child(3) .brick{ background-image:linear-gradient(160deg,var(--brick),var(--brick-dark)); }
     .brick-slot:nth-child(2) .brick,
@@ -394,8 +388,8 @@
 
     .brick-slot:hover .brick,
     .brick-slot:focus-within .brick{
-        transform:rotateY(-32deg) translateX(2px);
-        box-shadow:-26px 20px 45px rgba(33,23,20,.4);
+        transform:rotateY(-48deg) translateX(4px);
+        box-shadow:-32px 24px 50px rgba(33,23,20,.45);
     }
 
     .brick-num{
@@ -1036,7 +1030,6 @@
         <div class="brick-slot">
             <div class="cavity"></div>
             <a class="brick" href="spectacles/histoire.html">
-                <span class="brick-photo"></span>
                 <span class="brick-num">01</span>
                 <span class="brick-name">L'Histoire qui n'existe pas encore</span>
                 <span class="brick-tag">Le public invente, les comédiens racontent. Rien n'est écrit à l'avance.</span>
@@ -1047,7 +1040,6 @@
         <div class="brick-slot">
             <div class="cavity"></div>
             <a class="brick" href="spectacles/banjo-bill.html">
-                <span class="brick-photo"></span>
                 <span class="brick-num">02</span>
                 <span class="brick-name">Banjo Bill</span>
                 <span class="brick-tag">Un vieil homme, un banjo, et toute une vie qui ressurgit.</span>
@@ -1058,7 +1050,6 @@
         <div class="brick-slot">
             <div class="cavity"></div>
             <a class="brick" href="spectacles/le-perron.html">
-                <span class="brick-photo"></span>
                 <span class="brick-num">03</span>
                 <span class="brick-name">Le Perron</span>
                 <span class="brick-tag">Il suffit parfois d'un pas sur un perron pour changer toute une existence.</span>
@@ -1069,7 +1060,6 @@
         <div class="brick-slot">
             <div class="cavity"></div>
             <a class="brick" href="spectacles/a-rebours.html">
-                <span class="brick-photo"></span>
                 <span class="brick-num">04</span>
                 <span class="brick-name">À Rebours</span>
                 <span class="brick-tag">Une histoire en trois temps, jouée à l'envers, du dénouement vers l'origine.</span>
@@ -1306,8 +1296,13 @@
     const heroVideo = document.getElementById("hero-video");
 
     if (heroVideo) {
-        heroVideo.addEventListener("loadeddata", () => heroVideo.classList.add("is-loaded"));
-        heroVideo.addEventListener("error", () => heroVideo.remove());
+        /* No hero.mp4 on disk yet? The <video> element still displays its
+           poster="images/hero.jpg" image on its own — nothing to do here.
+           Once a real hero.mp4 is added, it plays automatically in the
+           same spot. */
+        heroVideo.addEventListener("error", () => {
+            console.warn("La Brique Impro: images/hero.mp4 introuvable, le poster reste affiché.");
+        });
     }
 
     function spawnDust(el, scaleUp){
